@@ -1,0 +1,1976 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Electronicute.Rinko.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Meow.Rinko.Core.Api.BDR">
+            <summary>
+            所有带参数查询的返回基类
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Api.BDR.ResultStatus">
+            <summary>
+            Api回送的状态
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Api.BDR.DoRectify(System.String)">
+            <summary>
+            过滤Api回送
+            </summary>
+            <param name="ResultMessage">回送消息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Meow.Rinko.Core.Api.Tracker">
+            <summary>
+            榜线高度查询
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Api.Tracker.cutoffs">
+            <summary>
+            档线高数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Api.Tracker.#ctor(Meow.Rinko.Core.Country,System.Int32,System.Int32)">
+            <summary>
+            榜线高实例
+            </summary>
+            <param name="server">服务器</param>
+            <param name="ex">活动id</param>
+            <param name="tier">榜线类型</param>
+        </member>
+        <member name="T:Meow.Rinko.Core.Api.BandoriPlayer">
+            <summary>
+            查询一个玩家的信息
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Api.BandoriPlayer.Data">
+            <summary>
+            玩家数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Api.BandoriPlayer.#ctor(Meow.Rinko.Core.Country,System.Int64,System.Int32)">
+            <summary>
+            初始化一个玩家
+            </summary>
+            <param name="server">服务器</param>
+            <param name="PlayerId">玩家ID</param>
+            <param name="Mode">是[0]/否[2] 获取缓存数据</param>
+        </member>
+        <member name="T:Meow.Rinko.Core.Country">
+            <summary>
+            枚举的区服类
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.jp">
+            <summary>
+            日本
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.en">
+            <summary>
+            国际服
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.tw">
+            <summary>
+            台湾服
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.cn">
+            <summary>
+            国服
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.kr">
+            <summary>
+            韩国服
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Country.undefined">
+            <summary>
+            未定义(保留字段)
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Url">
+            <summary>
+            原始的Url库
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.basenews">
+            <summary>
+            最近更新
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.basesongs">
+            <summary>
+            所有歌曲
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.basegachas">
+            <summary>
+            所有卡池
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.baseevents">
+            <summary>
+            所有活动
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.basecharacters">
+            <summary>
+            所有角色
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.basearchives">
+            <summary>
+            所有资源
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.Core.Url.baseallsongs">
+            <summary>
+            所有歌曲计算
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.TrackerURL(Meow.Rinko.Core.Country,System.Int32,System.Int32)">
+            <summary>
+            获取某服务器某档线高的一个档线追踪器
+            </summary>
+            <param name="server">服务器</param>
+            <param name="ex">活动编号</param>
+            <param name="tier">榜线高</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.EventURL(System.Int32)">
+            <summary>
+            获取某个固定活动的URL
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.GachaURL(System.Int32)">
+            <summary>
+            获得某个固定编号卡池的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.CardsURL(System.Int32)">
+            <summary>
+            获得某个固定的卡的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.CharactersURL(System.Int32)">
+            <summary>
+            获得某个固定角色的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.SearchPlayer(Meow.Rinko.Core.Country,System.Int64,System.Int32)">
+            <summary>
+            搜索某个服务器的某个固定玩家的数据
+            </summary>
+            <param name="server">服务器id</param>
+            <param name="playerId">玩家id</param>
+            <param name="mode">0 / 2 (fresh)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Url.SyncPlayer(Meow.Rinko.Core.Country,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            同步Bestdori玩家
+            </summary>
+            <param name="server">服务器</param>
+            <param name="stat">状态类</param>
+            <param name="limit">限制高</param>
+            <param name="offset">偏移</param>
+            <returns></returns>
+        </member>
+        <member name="T:Meow.Rinko.Core.Bases">
+            <summary>
+            直接获取
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Basenews">
+            <summary>
+            最近更新
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Basesongs">
+            <summary>
+            所有歌曲
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Basegachas">
+            <summary>
+            所有卡池
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Baseevents">
+            <summary>
+            所有活动
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Basecharacters">
+            <summary>
+            所有角色
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Basearchives">
+            <summary>
+            所有资源
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Baseallsongs">
+            <summary>
+            所有歌曲计算
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Tracker(Meow.Rinko.Core.Country,System.Int32,System.Int32)">
+            <summary>
+            获取某服务器某档线高的一个档线追踪器
+            </summary>
+            <param name="server">服务器</param>
+            <param name="ex">活动编号</param>
+            <param name="tier">榜线高</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.SyncPlayer(Meow.Rinko.Core.Country,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            同步Bestdori玩家
+            </summary>
+            <param name="server">服务器</param>
+            <param name="stat">状态类</param>
+            <param name="limit">限制高</param>
+            <param name="offset">偏移</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Event(System.Int32)">
+            <summary>
+            获取某个固定活动的URL
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Gacha(System.Int32)">
+            <summary>
+            获得某个固定编号卡池的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Cards(System.Int32)">
+            <summary>
+            获得某个固定的卡的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.Characters(System.Int32)">
+            <summary>
+            获得某个固定角色的数据
+            </summary>
+            <param name="data">编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meow.Rinko.Core.Bases.SearchPlayer(Meow.Rinko.Core.Country,System.Int64,System.Int32)">
+            <summary>
+            搜索某个服务器的某个固定玩家的数据
+            </summary>
+            <param name="server">服务器id</param>
+            <param name="playerId">玩家id</param>
+            <param name="mode">0 / 2 (fresh)</param>
+            <returns></returns>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.EventList">
+            <summary>
+            活动列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.EventList.Data">
+            <summary>
+            所有活动列表数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.EventList.#ctor">
+            <summary>
+            所有初始化活动列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.GachaList">
+            <summary>
+            卡池列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.GachaList.Data">
+            <summary>
+            所有卡池列表
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.GachaList.#ctor">
+            <summary>
+            初始化所有卡池列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Song">
+            <summary>
+            乐曲
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Song.Data">
+            <summary>
+            所有乐曲列表
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Song.#ctor">
+            <summary>
+            初始化所有乐曲列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Character">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Character.Data">
+            <summary>
+            所有角色数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Character.#ctor">
+            <summary>
+            初始化所有角色
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Archive">
+            <summary>
+            榜线最高统计
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Archive.Data">
+            <summary>
+            所有榜线最高统计数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Archive.#ctor">
+            <summary>
+            初始化榜线最高统计数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.News">
+            <summary>
+            更新信息
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.News.Data">
+            <summary>
+            所有更新信息数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.News.#ctor">
+            <summary>
+            初始化所有更新信息数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.SongPcts">
+            <summary>
+            歌曲分数计算
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.SongPcts.Data">
+            <summary>
+            歌曲计算分数公式数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.SongPcts.#ctor">
+            <summary>
+            初始化歌曲分数计算
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Event">
+            <summary>
+            某特定活动
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Event.Data">
+            <summary>
+            活动数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Event.#ctor(System.Int32)">
+            <summary>
+            初始化活动数据
+            </summary>
+            <param name="num">活动号</param>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Gacha">
+            <summary>
+            某特定卡池
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Gacha.Data">
+            <summary>
+            卡池数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Gacha.#ctor(System.Int32)">
+            <summary>
+            初始化某卡池
+            </summary>
+            <param name="num">卡池编号</param>
+        </member>
+        <member name="T:Meow.Rinko.Core.Gets.Card">
+            <summary>
+            某卡片
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Gets.Card.Data">
+            <summary>
+            卡片数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.Core.Gets.Card.#ctor(System.Int32)">
+            <summary>
+            初始化某卡片
+            </summary>
+            <param name="num"></param>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Archive">
+            <summary>
+            历史档线模型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Archive.cutoff">
+            <summary>
+            历史档线高
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Archive.board">
+            <summary>
+            高档通知
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card">
+            <summary>
+            基准卡类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.characterId">
+            <summary>
+            人物ID
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.rarity">
+            <summary>
+            稀有度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.attribute">
+            <summary>
+            加成类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.levelLimit">
+            <summary>
+            等级限制
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.resourceSetName">
+            <summary>
+            资源包组名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.sdResourceName">
+            <summary>
+            LiveSD资源包组名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.episodes">
+            <summary>
+            剧情集
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes">
+            <summary>
+            剧情类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.entries">
+            <summary>
+            剧情列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData">
+            <summary>
+            剧情类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.episodeId">
+            <summary>
+            剧情id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.episodeType">
+            <summary>
+            剧情类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.situationId">
+            <summary>
+            场序id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.scenarioId">
+            <summary>
+            分剧情Id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.appendPerformance">
+            <summary>
+            解锁后添加的演奏值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.appendTechnique">
+            <summary>
+            解锁后添加的技巧值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.appendVisual">
+            <summary>
+            解锁添加的视觉值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.releaseLevel">
+            <summary>
+            获取时等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.costs">
+            <summary>
+            解锁花费类型
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs">
+            <summary>
+            解锁花费类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.entries">
+            <summary>
+            花费列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.CostsData">
+            <summary>
+            花费类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.CostsData.resourceId">
+            <summary>
+            资源类型id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.CostsData.resourceType">
+            <summary>
+            资源类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.CostsData.quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Costs.CostsData.lbBonus">
+            <summary>
+            最低数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.rewards">
+            <summary>
+            角色奖励
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards">
+            <summary>
+            奖励类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards.entries">
+            <summary>
+            奖励数据列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards.RewardsData">
+            <summary>
+            奖励类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards.RewardsData.resourceType">
+            <summary>
+            奖励类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards.RewardsData.quantity">
+            <summary>
+            奖励数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.Rewards.RewardsData.lbBonus">
+            <summary>
+            最低奖励
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.title">
+            <summary>
+            剧情名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.Episodes.EpisodesData.characterId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.costumeId">
+            <summary>
+            服装id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.gachaText">
+            <summary>
+            卡池文字
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.prefix">
+            <summary>
+            前缀
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.releasedAt">
+            <summary>
+            发布日期
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.skillName">
+            <summary>
+            技能名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.skillId">
+            <summary>
+            技能id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.source">
+            <summary>
+            源
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.stat">
+            <summary>
+            综合力数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Card.StatData">
+            <summary>
+            状态数据类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.StatData.performance">
+            <summary>
+            表演值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.StatData.technique">
+            <summary>
+            技巧值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Card.StatData.visual">
+            <summary>
+            视觉值
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Character">
+            <summary>
+            角色类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Character.characterName">
+            <summary>
+            人物名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Character.bandId">
+            <summary>
+            归属乐队
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event">
+            <summary>
+            活动类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.eventType">
+            <summary>
+            活动类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.eventName">
+            <summary>
+            活动名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.assetBundleName">
+            <summary>
+            资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.bannerAssetBundleName">
+            <summary>
+            标题图资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.startAt">
+            <summary>
+            启动时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.endAt">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.enableFlag">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.publicStartAt">
+            <summary>
+            确定开始时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.publicEndAt">
+            <summary>
+            确定结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.distributionStartAt">
+            <summary>
+            奖励分发时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.distributionEndAt">
+            <summary>
+            奖励分发结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.bgmAssetBundleName">
+            <summary>
+            BGM资源包
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.bgmFileName">
+            <summary>
+            BGM文件名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.aggregateEndAt">
+            <summary>
+            合并结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.exchangeEndAt">
+            <summary>
+            交换结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.pointRewards">
+            <summary>
+            分数奖励
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Pointreward">
+            <summary>
+            分数奖励类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Pointreward.point">
+            <summary>
+            分数
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Pointreward.rewardType">
+            <summary>
+            奖励类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Pointreward.rewardQuantity">
+            <summary>
+            奖励数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Pointreward.rewardId">
+            <summary>
+            奖励物品id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.rankingRewards">
+            <summary>
+            排名奖励
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Rankingreward">
+            <summary>
+            排名奖励类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Rankingreward.fromRank">
+            <summary>
+            从名次
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Rankingreward.toRank">
+            <summary>
+            到名次
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Rankingreward.rewardType">
+            <summary>
+            奖励类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Rankingreward.rewardId">
+            <summary>
+            奖励物品id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Rankingreward.rewardQuantity">
+            <summary>
+            奖励数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.attributes">
+            <summary>
+            加成属性
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Attribute">
+            <summary>
+            加成属性类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Attribute.attribute">
+            <summary>
+            属性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Attribute.percent">
+            <summary>
+            加成百分比
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.characters">
+            <summary>
+            加成角色
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Character">
+            <summary>
+            加成角色类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Character.characterId">
+            <summary>
+            角色id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Character.percent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.stories">
+            <summary>
+            故事列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Story">
+            <summary>
+            故事类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.scenarioId">
+            <summary>
+            情景id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.coverImage">
+            <summary>
+            背景图
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.backgroundImage">
+            <summary>
+            背景图片
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.releasePt">
+            <summary>
+            释放分数
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.rewards">
+            <summary>
+            奖励
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Event.Story.Reward">
+            <summary>
+            奖励类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.Reward.rewardType">
+            <summary>
+            奖励类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.Reward.rewardId">
+            <summary>
+            奖励物品id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.Reward.rewardQuantity">
+            <summary>
+            奖励数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.caption">
+            <summary>
+            大标题
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.synopsis">
+            <summary>
+            概要字串
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.Story.releaseConditions">
+            <summary>
+            达成条件
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Event.rewardCards">
+            <summary>
+            奖励卡片
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Gacha">
+            <summary>
+            卡池类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.details">
+            <summary>
+            卡池详细信息
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Gacha.DetailData">
+            <summary>
+            详细信息类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.DetailData.rarityIndex">
+            <summary>
+            稀有度值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.DetailData.weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.DetailData.pickup">
+            <summary>
+            ??
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.rates">
+            <summary>
+            评分数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Gacha.RateData">
+            <summary>
+            评分数据类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.RateData.rate">
+            <summary>
+            分
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.RateData.weightTotal">
+            <summary>
+            总权重
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.paymentMethods">
+            <summary>
+            获取方案
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Gacha.Paymentmethod">
+            <summary>
+            获取方案类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.gachaId">
+            <summary>
+            抽奖id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.paymentMethod">
+            <summary>
+            获取方案
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.paymentMethodId">
+            <summary>
+            获取方案id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.count">
+            <summary>
+            总计
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.behavior">
+            <summary>
+            表现形
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.pickup">
+            <summary>
+            附赠?
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Paymentmethod.costItemQuantity">
+            <summary>
+            扣除物品数量
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.resourceName">
+            <summary>
+            资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.bannerAssetBundleName">
+            <summary>
+            标题图资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.gachaName">
+            <summary>
+            卡池名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.publishedAt">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.closedAt">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.annotation">
+            <summary>
+            附加信息
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.gachaPeriod">
+            <summary>
+            卡池频度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.gachaType">
+            <summary>
+            卡池类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.newCards">
+            <summary>
+            新卡片(Object获取源转String自己解析)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.information">
+            <summary>
+            卡池信息
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Gacha.Information">
+            <summary>
+            卡池信息类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Information.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Information.term">
+            <summary>
+            期
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Information.newMemberInfo">
+            <summary>
+            新成员信息
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Gacha.Information.notice">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.News">
+            <summary>
+            新闻类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.News.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.News.authors">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.News.timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.News.tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player">
+            <summary>
+            玩家类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.cache">
+            <summary>
+            是否缓存数据
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.time">
+            <summary>
+            缓存时间(Unix时间戳)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.profile">
+            <summary>
+            个人资料
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile">
+            <summary>
+            个人资料类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.rank">
+            <summary>
+            用户等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.degree">
+            <summary>
+            用户单项最高等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.introduction">
+            <summary>
+            个人简介
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishTotalDeckPowerFlg">
+            <summary>
+            是否可以查看用户的所有乐队
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishBandRankFlg">
+            <summary>
+            是否可以查看用户主乐队
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishMusicClearedFlg">
+            <summary>
+            是否可查看用户已经通过(Clear)的乐曲
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishMusicFullComboFlg">
+            <summary>
+            是否可查看用户已经全连(FullCombo)的乐曲
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishHighScoreRatingFlg">
+            <summary>
+            是否可查看用户的最高分
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishUserIdFlg">
+            <summary>
+            是否可以查找用户id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.searchableFlg">
+            <summary>
+            是否可搜索用户
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.publishUpdatedAtFlg">
+            <summary>
+            是否可以查看用户最后登陆时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.friendApplicableFlg">
+            <summary>
+            用户是否接受好友
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.mainDeckUserSituations">
+            <summary>
+            主乐队操作
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations">
+            <summary>
+            主乐队操作类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.entries">
+            <summary>
+            数据组
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data">
+            <summary>
+            数据组类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.exp">
+            <summary>
+            经验值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.level">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.addExp">
+            <summary>
+            距离下一级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.illust">
+            <summary>
+            插图
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.userId">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.skillExp">
+            <summary>
+            技巧值经验
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.createdAt">
+            <summary>
+            创立于
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.skillLevel">
+            <summary>
+            技巧值等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.situationId">
+            <summary>
+            情景(套装)id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.duplicateCount">
+            <summary>
+            重复数
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Maindeckusersituations.Data.trainingStatus">
+            <summary>
+            训练状态
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.bandRankMap">
+            <summary>
+            乐队等级列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Bandrankmap">
+            <summary>
+            乐队等级列表类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Bandrankmap.entries">
+            <summary>
+            乐队等级查询列
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.clearedMusicCountMap">
+            <summary>
+            完成乐曲列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap">
+            <summary>
+            完成乐曲列表类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.entries">
+            <summary>
+            数据列
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data">
+            <summary>
+            完成乐曲数据类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data.easy">
+            <summary>
+            简单(easy)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data.hard">
+            <summary>
+            困难(Hard)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data.expert">
+            <summary>
+            专家(Expert)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data.normal">
+            <summary>
+            普通(Normal)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Clearedmusiccountmap.Data.special">
+            <summary>
+            特殊(Special)
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.fullComboMusicCountMap">
+            <summary>
+            FC乐曲数目
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap">
+            <summary>
+            FC乐曲类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.entries">
+            <summary>
+            数据表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.Data">
+            <summary>
+            数据类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.Data.easy">
+            <summary>
+            简单(Easy)难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.Data.hard">
+            <summary>
+            困难(Hard)难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.Data.expert">
+            <summary>
+            专家(Expert)难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Fullcombomusiccountmap.Data.normal">
+            <summary>
+            普通(Normal)难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userHighScoreRating">
+            <summary>
+            用户最高分
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating">
+            <summary>
+            用户最高分列表类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userOtherHighScoreMusicList">
+            <summary>
+            其他最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userRoseliaHighScoreMusicList">
+            <summary>
+            R最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userAfterglowHighScoreMusicList">
+            <summary>
+            AG最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userPoppinPartyHighScoreMusicList">
+            <summary>
+            PPP最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userPastelPalettesHighScoreMusicList">
+            <summary>
+            PP最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.userHelloHappyWorldHighScoreMusicList">
+            <summary>
+            HHW最高分音乐列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userotherhighscoremusiclist">
+            <summary>
+            其他最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userotherhighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userroseliahighscoremusiclist">
+            <summary>
+            R最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userroseliahighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userafterglowhighscoremusiclist">
+            <summary>
+            AG最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userafterglowhighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userpoppinpartyhighscoremusiclist">
+            <summary>
+            PPP最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userpoppinpartyhighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userpastelpaletteshighscoremusiclist">
+            <summary>
+            PP最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userpastelpaletteshighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userhellohappyworldhighscoremusiclist">
+            <summary>
+            HHW最高分音乐列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.Userhellohappyworldhighscoremusiclist.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.HighScoreMusicList">
+            <summary>
+            最高分音乐列表类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.HighScoreMusicList.rating">
+            <summary>
+            评分
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.HighScoreMusicList.musicId">
+            <summary>
+            音乐id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userhighscorerating.HighScoreMusicList.difficulty">
+            <summary>
+            难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.mainUserDeck">
+            <summary>
+            用户主乐队
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck">
+            <summary>
+            用户主乐队类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.deckId">
+            <summary>
+            主乐队编号
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.leader">
+            <summary>
+            队长
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.member1">
+            <summary>
+            成员1
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.member2">
+            <summary>
+            成员2
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.member3">
+            <summary>
+            成员3
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.member4">
+            <summary>
+            成员4
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.deckName">
+            <summary>
+            卡槽名称
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Mainuserdeck.bondsEffectIds">
+            <summary>
+            效果加成id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userProfileSituation">
+            <summary>
+            用户个人资料状态
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userprofilesituation">
+            <summary>
+            用户个人资料状态类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofilesituation.illust">
+            <summary>
+            插图渲染性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofilesituation.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofilesituation.situationId">
+            <summary>
+            情景(套装)id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofilesituation.viewProfileSituationStatus">
+            <summary>
+            用户状态可用性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userProfileDegreeMap">
+            <summary>
+            用户下挂标
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap">
+            <summary>
+            用户下挂标类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.entries">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.first">
+            <summary>
+            第一个标
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.second">
+            <summary>
+            第二个标
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.Degree">
+            <summary>
+            标志类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.Degree.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.Degree.degreeId">
+            <summary>
+            标志id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Userprofiledegreemap.Data.Degree.profileDegreeType">
+            <summary>
+            标志类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.enabledUserAreaItems">
+            <summary>
+            用户使用的道具
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems">
+            <summary>
+            用户的道具类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.entries">
+            <summary>
+            数据存储类
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.Data.level">
+            <summary>
+            等级
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.Data.userId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.Data.areaItemId">
+            <summary>
+            道具id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.Enableduserareaitems.Data.areaItemCategory">
+            <summary>
+            道具从属类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Player.Profile.userTwitter">
+            <summary>
+            用户推特
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.QEvent">
+            <summary>
+            活动列表查询
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.eventType">
+            <summary>
+            活动类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.eventName">
+            <summary>
+            活动名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.bannerAssetBundleName">
+            <summary>
+            标题图名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.startAt">
+            <summary>
+            活动开始于
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.endAt">
+            <summary>
+            活动结束于
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.attributes">
+            <summary>
+            加成属性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.characters">
+            <summary>
+            加成角色
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.rewardCards">
+            <summary>
+            奖励卡片
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.QEvent.Attribute">
+            <summary>
+            加成属性类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.Attribute.attribute">
+            <summary>
+            属性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.Attribute.percent">
+            <summary>
+            加成百分比
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.QEvent.Character">
+            <summary>
+            加成角色类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.Character.characterId">
+            <summary>
+            加成角色id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QEvent.Character.percent">
+            <summary>
+            加成百分比
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.QGacha">
+            <summary>
+            卡池列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.resourceName">
+            <summary>
+            资源名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.bannerAssetBundleName">
+            <summary>
+            标题类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.gachaName">
+            <summary>
+            卡池名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.publishedAt">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.closedAt">
+            <summary>
+            关闭时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.QGacha.newCards">
+            <summary>
+            新卡列表
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Song">
+            <summary>
+            歌曲类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.tag">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.bandId">
+            <summary>
+            乐队id
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.jacketImage">
+            <summary>
+            专辑封面
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.musicTitle">
+            <summary>
+            歌曲名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.publishedAt">
+            <summary>
+            发售时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.closedAt">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.difficulty">
+            <summary>
+            难度列
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.length">
+            <summary>
+            长度值
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.notes">
+            <summary>
+            音符数
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.bpm">
+            <summary>
+            Bpm倍率
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Song.PlayLevel">
+            <summary>
+            难度列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.PlayLevel.playLevel">
+            <summary>
+            难度
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.PlayLevel.publishedAt">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Song.Bpm">
+            <summary>
+            BPM节奏比率
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.Bpm.bpm">
+            <summary>
+            BPM
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.Bpm.start">
+            <summary>
+            开始于
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Song.Bpm.end">
+            <summary>
+            结束于
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.Core.Model.Tracker">
+            <summary>
+            榜线类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Tracker.time">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.Core.Model.Tracker.ep">
+            <summary>
+            分数
+            </summary>
+        </member>
+    </members>
+</doc>

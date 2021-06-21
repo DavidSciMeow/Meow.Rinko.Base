@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Electronicute.Rinko.Core</AssemblyName>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>2021 Electronicute</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/DavidSciMeow/Meow.Rinko.Base</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DavidSciMeow/Meow.Rinko.Base</RepositoryUrl>
+    <RepositoryType>gitrepo</RepositoryType>
+    <PackageTags>Bestdori Bangdream Operative-Library</PackageTags>
+    <NeutralLanguage>zh</NeutralLanguage>
+    <Description>A C# Bestdori! Basic operation library</Description>
+    <Authors>DavidSciMeow</Authors>
+    <Company>Electronicute</Company>
+    <Product>Electronicute.Rinko.*</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DocumentationFile>C:\Users\David\source\repos\Meow.Rinko.Base\Electronicute.Rinko.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Electronicute.Util.Network" Version="1.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
