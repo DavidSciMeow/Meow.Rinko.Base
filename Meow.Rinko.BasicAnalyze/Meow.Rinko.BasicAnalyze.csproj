@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Source\Repos\Meow.Rinko.Base\Meow.Rinko.BasicAnalyze\Meow.Rinko.BasicAnalyze.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meow.Rinko.Base\Meow.Rinko.Core.csproj" />
+  </ItemGroup>
 
 </Project>

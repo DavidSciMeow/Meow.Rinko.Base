@@ -12,7 +12,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有活动列表数据
         /// </summary>
-        public Dictionary<int, Model.QEvent>? Data { get; set; }
+        public Dictionary<int, Model.QEvent>? Data { get; }
         /// <summary>
         /// 所有初始化活动列表
         /// </summary>
@@ -36,7 +36,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有卡池列表
         /// </summary>
-        public Dictionary<int, Model.QGacha>? Data { get; set; }
+        public Dictionary<int, Model.QGacha>? Data { get; }
         /// <summary>
         /// 初始化所有卡池列表
         /// </summary>
@@ -60,7 +60,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有乐曲列表
         /// </summary>
-        public Dictionary<int, Model.Song>? Data { get; set; }
+        public Dictionary<int, Model.Song>? Data { get; }
         /// <summary>
         /// 初始化所有乐曲列表
         /// </summary>
@@ -84,7 +84,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有角色数据
         /// </summary>
-        public Dictionary<int, Model.Character>? Data { get; set; }
+        public Dictionary<int, Model.Character>? Data { get; }
         /// <summary>
         /// 初始化所有角色
         /// </summary>
@@ -108,7 +108,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有榜线最高统计数据
         /// </summary>
-        public Dictionary<int, Model.Archive>? Data { get; set; }
+        public Dictionary<int, Model.Archive>? Data { get; }
         /// <summary>
         /// 初始化榜线最高统计数据
         /// </summary>
@@ -132,7 +132,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 所有更新信息数据
         /// </summary>
-        public Dictionary<int, Model.News>? Data { get; set; }
+        public Dictionary<int, Model.News>? Data { get; }
         /// <summary>
         /// 初始化所有更新信息数据
         /// </summary>
@@ -156,7 +156,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 歌曲计算分数公式数据
         /// </summary>
-        public Dictionary<int, Dictionary<int, Dictionary<double, double[]>>>? Data { get; set; }
+        public Dictionary<int, Dictionary<int, Dictionary<double, double[]>>>? Data { get; }
         /// <summary>
         /// 初始化歌曲分数计算
         /// </summary>
@@ -180,7 +180,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 活动数据
         /// </summary>
-        public Model.Event? Data { get; set; }
+        public Model.Event? Data { get; }
         /// <summary>
         /// 初始化活动数据
         /// </summary>
@@ -205,7 +205,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 卡池数据
         /// </summary>
-        public Model.Gacha? Data { get; set; }
+        public Model.Gacha? Data { get; }
         /// <summary>
         /// 初始化某卡池
         /// </summary>
@@ -230,7 +230,7 @@ namespace Meow.Rinko.Core.Gets
         /// <summary>
         /// 卡片数据
         /// </summary>
-        public Model.Card? Data { get; set; }
+        public Model.Card? Data { get; }
         /// <summary>
         /// 初始化某卡片
         /// </summary>

@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Meow.Rinko.BasicAnalyze</name>
+    </assembly>
+    <members>
+        <member name="T:Meow.Rinko.BasicAnalyze.Gets">
+            <summary>
+            获取基础处理信息
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.BasicAnalyze.Gets.CountryEvent">
+            <summary>
+            某服务器区域的活动信息
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Gets.CountryEvent.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.BasicAnalyze.Gets.CountryEvent.#ctor(System.Int32,Meow.Rinko.Core.Country)">
+            <summary>
+            某服务器区域的活动信息
+            </summary>
+            <param name="eventnum">活动号</param>
+            <param name="c">区服</param>
+        </member>
+        <member name="T:Meow.Rinko.BasicAnalyze.Model.CountryEvent">
+            <summary>
+            确定区域的活动查询
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.eventType">
+            <summary>
+            活动类型
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.eventName">
+            <summary>
+            活动名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.assetBundleName">
+            <summary>
+            资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.bannerAssetBundleName">
+            <summary>
+            标题图资源包名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.startAt">
+            <summary>
+            启动时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.endAt">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.enableFlag">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.publicStartAt">
+            <summary>
+            确定开始时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.publicEndAt">
+            <summary>
+            确定结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.distributionStartAt">
+            <summary>
+            奖励分发时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.distributionEndAt">
+            <summary>
+            奖励分发结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.bgmAssetBundleName">
+            <summary>
+            BGM资源包
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.bgmFileName">
+            <summary>
+            BGM文件名
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.aggregateEndAt">
+            <summary>
+            合并结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.exchangeEndAt">
+            <summary>
+            交换结束时间
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.pointRewards">
+            <summary>
+            分数奖励
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.rankingRewards">
+            <summary>
+            排名奖励
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.attributes">
+            <summary>
+            加成属性
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.characters">
+            <summary>
+            加成角色
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.stories">
+            <summary>
+            故事列表
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.CountryEvent.rewardCards">
+            <summary>
+            奖励卡片
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.BasicAnalyze.Model.Tracker">
+            <summary>
+            基础分析榜线类
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.Tracker.PCT">
+            <summary>
+            活动相对百分比
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.Tracker.Score">
+            <summary>
+            分数
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.Tracker.OTS">
+            <summary>
+            原始时间戳
+            <para>OTS is a abbreviation `OriginalTimeStamp`</para>
+            </summary>
+        </member>
+        <member name="P:Meow.Rinko.BasicAnalyze.Model.Tracker.Time">
+            <summary>
+            当时时间
+            </summary>
+        </member>
+        <member name="T:Meow.Rinko.BasicAnalyze.MultiTracker">
+            <summary>
+            多功能榜线高度转换器
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.BasicAnalyze.MultiTracker.event">
+            <summary>
+            活动总体信息
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.BasicAnalyze.MultiTracker.Tracker">
+            <summary>
+            榜线高
+            </summary>
+        </member>
+        <member name="F:Meow.Rinko.BasicAnalyze.MultiTracker.C">
+            <summary>
+            区服
+            </summary>
+        </member>
+        <member name="M:Meow.Rinko.BasicAnalyze.MultiTracker.#ctor(System.Int32,Meow.Rinko.Core.Country,System.Int32)">
+            <summary>
+            多功能榜线高度转换
+            </summary>
+            <param name="eventnum">活动号</param>
+            <param name="c">区服</param>
+            <param name="tier">高度</param>
+        </member>
+    </members>
+</doc>
