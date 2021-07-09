@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Meow.Rinko.Base\Meow.Rinko.Core.csproj" />
-    <ProjectReference Include="..\Meow.Rinko.BasicAnalyze\Meow.Rinko.BasicAnalyze.csproj" />
   </ItemGroup>
 
 </Project>

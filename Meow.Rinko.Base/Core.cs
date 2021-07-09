@@ -151,7 +151,6 @@ namespace Meow.Rinko.Core
         /// 所有歌曲计算
         /// </summary>
         public static async Task<string> Baseallsongs() => await Get.String(Url.baseallsongs, false);
-
         /// <summary>
         /// 获取某服务器某档线高的一个档线追踪器
         /// </summary>
@@ -201,5 +200,24 @@ namespace Meow.Rinko.Core
         /// <param name="mode">0 / 2 (fresh)</param>
         /// <returns></returns>
         public static async Task<string> SearchPlayer(Country server, long playerId, int mode = 0) => await Get.String(Url.SearchPlayer(server, playerId, mode), false);
+        /// <summary>
+        /// 获取服装列表(原始live2d)
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<string> CostumeList() => await Get.String("https://bestdori.com/api/costumes/all.5.json");
+        /// <summary>
+        /// 获得服装具体作用
+        /// </summary>
+        /// <param name="num">服装号</param>
+        /// <returns></returns>
+        public static async Task<string> Costumes(int num) => await Get.String($"https://bestdori.com/api/costumes/{num}.json");
+        /// <summary>
+        /// 获取具体区服的具体服装位
+        /// </summary>
+        /// <param name="datastring">服装名</param>
+        /// <param name="c">具体区服 (默认日本服)</param>
+        /// <returns></returns>
+        public static async Task<string> GetDataAssets(string datastring, Country c = Country.jp)
+            => await Get.String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
     }
 }
