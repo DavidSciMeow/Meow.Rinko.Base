@@ -217,7 +217,6 @@ namespace Meow.Rinko.Core
         /// <param name="datastring">服装名</param>
         /// <param name="c">具体区服 (默认日本服)</param>
         /// <returns></returns>
-        public static async Task<string> GetDataAssets(string datastring, Country c = Country.jp)
-            => await Get.String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
+        public static async Task<string> GetDataAssets(string datastring, Country c = Country.jp) => await Get.String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
     }
 }
