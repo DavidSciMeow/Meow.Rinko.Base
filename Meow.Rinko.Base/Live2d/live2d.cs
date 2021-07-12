@@ -171,6 +171,10 @@ namespace Meow.Rinko.Core.Live2d
             string k = Bases.GetDataAssets(name, c).GetAwaiter().GetResult();
             JObject jo = JObject.Parse(k);
             Data = Newtonsoft.Json.JsonConvert.DeserializeObject<ConvertCostume>(jo?["Base"]?.ToString() ?? "");
+            for (int i = 0; i < Data.textures.Length; i++)
+            {
+                Data.textures[i].fileName = $"{Data.textures[i].fileName}.png";
+            }
         }
         /// <summary>
         /// 获取当前可用的所有live2d列表
@@ -227,7 +231,7 @@ namespace Meow.Rinko.Core.Live2d
                         var p = Path.Combine(pathBase, bundleName, f);
                         var (_, FileStatus, _) = Util.Network.Http.Get.File(
                             $"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",
-                            p);
+                            p.Replace(".png.png",".png"));
                         return (f, FileStatus);
                     });
                     return t;

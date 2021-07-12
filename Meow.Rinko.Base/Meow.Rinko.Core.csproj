@@ -18,6 +18,7 @@
     <Authors>DavidSciMeow</Authors>
     <Company>Electronicute</Company>
     <Product>Electronicute.Rinko.*</Product>
+    <Version>2.1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
