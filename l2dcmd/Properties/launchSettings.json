@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "l2dcmd": {
+      "commandName": "Project",
+      "commandLineArgs": "-l"
+    }
+  }
+}

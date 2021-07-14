@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meow.Rinko.Core", "Meow.Rin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meow.Rinko.Core.Test", "Meow.Rinko.Core.Test\Meow.Rinko.Core.Test.csproj", "{16FD681E-00F9-4AE5-B120-EDA476FFC03C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "l2dcmd", "l2dcmd\l2dcmd.csproj", "{2022D9A3-3611-4F9A-85E1-313BA3D209CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{16FD681E-00F9-4AE5-B120-EDA476FFC03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16FD681E-00F9-4AE5-B120-EDA476FFC03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16FD681E-00F9-4AE5-B120-EDA476FFC03C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2022D9A3-3611-4F9A-85E1-313BA3D209CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2022D9A3-3611-4F9A-85E1-313BA3D209CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2022D9A3-3611-4F9A-85E1-313BA3D209CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2022D9A3-3611-4F9A-85E1-313BA3D209CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

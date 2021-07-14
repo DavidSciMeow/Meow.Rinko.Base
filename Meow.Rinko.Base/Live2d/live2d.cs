@@ -43,12 +43,34 @@ namespace Meow.Rinko.Core.Live2d
         /// 获得Json列表
         /// </summary>
         /// <returns></returns>
-        public List<string> getList()
+        public List<(string name, Country country)> getList()
         {
-            List<string> l = new();
+            List<(string,Country)> l = new();
             foreach (var k in Data ?? new Dictionary<int, Costume?>())
             {
-                l.Add(k.Value?.assetBundleName ?? "");
+                Country c = Country.undefined;
+                var p = k.Value?.publishedAt;
+                if (p?[0] != null)
+                {
+                    c = 0;
+                }
+                else if(p?[1] != null)
+                {
+                    c = (Country)1;
+                }
+                else if(p?[2] != null)
+                {
+                    c = (Country)2;
+                }
+                else if(p?[3] != null)
+                {
+                    c = (Country)3;
+                }
+                else if(p?[4] != null)
+                {
+                    c = (Country)4;
+                }
+                l.Add((k.Value?.assetBundleName ?? "",c));
             }
             return l;
         }
@@ -170,26 +192,24 @@ namespace Meow.Rinko.Core.Live2d
         {
             string k = Bases.GetDataAssets(name, c).GetAwaiter().GetResult();
             JObject jo = JObject.Parse(k);
-            Data = Newtonsoft.Json.JsonConvert.DeserializeObject<ConvertCostume>(jo?["Base"]?.ToString() ?? "");
+            Data = Newtonsoft.Json.JsonConvert.DeserializeObject<ConvertCostume>(jo?["Base"]?.ToString() ?? "") ?? new();
             for (int i = 0; i < Data.textures.Length; i++)
             {
-                Data.textures[i].fileName = $"{Data.textures[i].fileName}.png";
+                if (!(Data.textures[i].fileName.Contains(".png")))
+                {
+                    Data.textures[i].fileName = $"{Data.textures[i].fileName}.png";
+                }
+                if (Data.textures[i].fileName.EndsWith(".png.png"))
+                {
+                    Data.textures[i].fileName = $"{Data.textures[i].fileName}".Replace(".png.png",".png");
+                }
             }
         }
         /// <summary>
         /// 获取当前可用的所有live2d列表
         /// </summary>
         /// <returns></returns>
-        public static string GetLive2dJsonList()
-        {
-            var j = new Live2dList();
-            List<string> l = new();
-            foreach (var dk in j.Data ?? new Dictionary<int, Live2dList.Costume?>())
-            {
-                l.Add(dk.Value?.assetBundleName ?? "");
-            }
-            return Newtonsoft.Json.JsonConvert.SerializeObject(l.ToArray());
-        }
+        public static string GetLive2dJsonList() => Newtonsoft.Json.JsonConvert.SerializeObject(new Live2dList().getList());
         /// <summary>
         /// 获取live2d的详细信息
         /// </summary>
@@ -215,7 +235,13 @@ namespace Meow.Rinko.Core.Live2d
             }
             public class CosFile
             {
+                /// <summary>
+                /// 路径包
+                /// </summary>
                 public string bundleName;
+                /// <summary>
+                /// 文件名
+                /// </summary>
                 public string fileName;
                 /// <summary>
                 /// 下载到指定目录根
@@ -229,10 +255,17 @@ namespace Meow.Rinko.Core.Live2d
                     {
                         var f = fileName.Replace(".bytes", "");
                         var p = Path.Combine(pathBase, bundleName, f);
-                        var (_, FileStatus, _) = Util.Network.Http.Get.File(
-                            $"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",
-                            p.Replace(".png.png",".png"));
-                        return (f, FileStatus);
+                        try
+                        {
+                            var (_, FileStatus, _) = Util.Network.Http.Get.File($"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",p);
+                            return (f, FileStatus);
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine($"{f} :: {ex}");
+                        }
+                        return (f, Util.Network.HttpFiles.PROGRESS_FAIL);
+
                     });
                     return t;
                 }
@@ -243,7 +276,6 @@ namespace Meow.Rinko.Core.Live2d
                 public int type;
                 public int duration;
             }
-
             public m_File m_GameObject;
             public int m_Enabled;
             public string m_Name;
@@ -254,27 +286,29 @@ namespace Meow.Rinko.Core.Live2d
             public CosFile[] motions;
             public Param praramGeneralA;
             public Param paramLoop;
-
-            public async Task<List<(string f, Util.Network.HttpFiles FileStatus)>> DownloadModel(string p,Country c = Country.jp)
-            {
-                var t = Task.Factory.StartNew(async () =>
-                {
-                    List<(string f, Util.Network.HttpFiles FileStatus)> l = new();
-                    l.Add(await model.DownloadFileInto(p, c));
-                    l.Add(await physics.DownloadFileInto(p, c));
-                    l.Add(await transition.DownloadFileInto(p, c));
-                    foreach (var d in textures)
+            /// <summary>
+            /// 下载整个模型
+            /// </summary>
+            /// <param name="p"></param>
+            /// <param name="c"></param>
+            /// <returns></returns>
+            public async Task<List<(string f, Util.Network.HttpFiles FileStatus)>> DownloadModel(string p, Country c = Country.jp) 
+                => await await Task.Factory.StartNew(async () =>
                     {
-                        l.Add(await d.DownloadFileInto(p, c));
-                    }
-                    foreach (var d in motions)
-                    {
-                        l.Add(await d.DownloadFileInto(p, c));
-                    }
-                    return l;
-                });
-                return await await t;
-            }
+                        List<(string f, Util.Network.HttpFiles FileStatus)> l = new();
+                        l.Add(await model.DownloadFileInto(p, c));
+                        l.Add(await physics.DownloadFileInto(p, c));
+                        l.Add(await transition.DownloadFileInto(p, c));
+                        foreach (var d in textures)
+                        {
+                            l.Add(await d.DownloadFileInto(p, c));
+                        }
+                        foreach (var d in motions)
+                        {
+                            l.Add(await d.DownloadFileInto(p, c));
+                        }
+                        return l;
+                    });
         }
     }
 }
