@@ -2,7 +2,7 @@
   "profiles": {
     "l2dcmd": {
       "commandName": "Project",
-      "commandLineArgs": "-d -f -v ./"
+      "commandLineArgs": "-find"
     }
   }
 }

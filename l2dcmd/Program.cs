@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace l2dcmd
 {
     class Program
     {
-        static string help = "命令模式: 第一参数 第二参数 ... 路径\n" +
-            "command mode: para1 para2 para3 .... Path \n" +
-            "例子(Example):\n" +
-            "下载所有模型到本程序集所在文件夹(download all to this folder) `l2dcmd -d ./`\n" +
+        static string help = 
+            "在使用前请检查您是否能连接BestDori.com \n" +
+            "[check internet connection before using software]\n"+
             "------------------可用参数-------------------\n" +
-            "-d (*download) [下载live2d] \n" +
+            "-d (*download) [下载全部live2d] \n" +
             "-f (*force update) [强制文件完整性检查] \n" +
             "-v (*verbose mode) [详细模式] \n" +
+            "-d [-f] [-v] [PATH] [全部下载主构型]\n" +
+            "====================================== \n" +
             "-l (*list live2d) [列表所有可用模型] \n" +
-            "-find (*find live2d) [寻找live2d]";
+            "-fc [string] (*find chara by charaid) [使用charaid搜索] \n" +
+            "-fr [string] (*find chara by AssetBundleName using Regex) [使用正则表达式进行包名称搜索] \n" +
+            "-fd [numkey] [path] (*file download) [下载指定的live2d到..]";
         static bool verbose = false;
         static bool download = false;
         static bool forcecheck = false;
@@ -33,42 +37,77 @@ namespace l2dcmd
                     }
                     foreach(var k in args)
                     {
-                        
-                        if(k == "-l" && args.Length == 1)
+
+                        if (k == "-l")
                         {
+                            Console.WriteLine("正在获取最新列表 [Getting Newest List()]");
                             var j = new Meow.Rinko.Core.Live2d.Live2dList();
-                            foreach(var d in j.Data)
+                            foreach (var d in j.Data)
                             {
                                 Console.WriteLine($"{d.Value.assetBundleName} :: {d.Key}");
                             }
                             Console.WriteLine("列表模式结束 [List mode complete]");
                             return;
                         }
-                        else if(k == "-find" && args.Length == 1)
+                        else if (k == "-fc")
                         {
-                            Console.WriteLine("请确认查找模式 | 1 [按角色号对位] | 2 [按包名称对位] | 3 [按描述对位]");
-                            Console.WriteLine("Select Mode as | 1 [By charaID] | 2 [By AssetbundleName] | 3 [By Pharse]");
-                            switch( Console.ReadLine() switch
+                            if (int.TryParse(args[1], out int patternnum))
                             {
-                                "1" => 1,
-                                "2" => 2,
-                                "3" => 3,
-                                _ => 0
-                            })
-                            {
-                                case 1: { }break;
-                                case 2: { }break;
-                                case 3: { }break;
-                                default: Console.WriteLine("未取得有效输入,程序退出 [Programm Exit as no correct parameter present]"); return;
+                                Console.WriteLine("正在获取最新列表 [Getting Newest List()]");
+                                var j = new Meow.Rinko.Core.Live2d.Live2dList();
+                                var result = from aa in j.Data where aa.Value.characterId == patternnum select aa;
+                                foreach (var d in result)
+                                {
+                                    Console.WriteLine($"[{d.Key}] : {d.Value.assetBundleName}");
+                                }
+                                Console.WriteLine("查找模式已列出所有可能 [Search list complete]");
                             }
-                            var j = new Meow.Rinko.Core.Live2d.Live2dList();
-                            foreach (var d in j.Data)
+                            else
                             {
-                                Console.WriteLine($"{d.Value.assetBundleName} :: {d.Key}");
+                                Console.WriteLine("您的输入不是数字 [No Number Present input Unvalid]");
+                            }
+                            return;
+                        }
+                        else if(k == "-fr")
+                        {
+                            var pattern = args[1];
+                            Console.WriteLine("正在获取最新列表 [Getting Newest List()]");
+                            var j = new Meow.Rinko.Core.Live2d.Live2dList();
+                            Console.WriteLine("正在搜索核对 [Validating]");
+                            var result = from aa in j.Data where Regex.IsMatch(aa.Value.assetBundleName, pattern) select aa;
+                            foreach (var d in result)
+                            {
+                                Console.WriteLine($"[{d.Key}] : {d.Value.assetBundleName}");
                             }
                             Console.WriteLine("查找模式已列出所有可能 [Search list complete]");
                             return;
                         }
+                        else if(k == "-fd")
+                        {
+                            if (string.IsNullOrWhiteSpace(args[2]))
+                            {
+                                Console.WriteLine("下载路径为空,程序退出 [PATH Empty Prog exit]");
+                                return;
+                            }
+                            Console.WriteLine($"下载路径 [PATH]: {args[2]}");
+                            Console.WriteLine("正在获取最新列表核对下载 [Getting Newest List for ()]");
+                            var j = new Meow.Rinko.Core.Live2d.Live2dList();
+                            if (int.TryParse(args[1], out int patternnum))
+                            {
+                                var kk = j.Data[patternnum].getLive2dPack().Data.DownloadModel(args[2]).GetAwaiter().GetResult();
+                                foreach(var (f, FileStatus) in kk)
+                                {
+                                    Console.WriteLine($"{f} :: {FileStatus}");
+                                }
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine("您输入的key非正常数字,请检查 [Key is not a number]");
+                                return;
+                            }
+                        }
+
                         if (k == "-d")
                         {
                             download = true;
@@ -112,7 +151,6 @@ namespace l2dcmd
                 Console.WriteLine("无输入 - 请携带参数 [No Input Parameter]");
             }
         }
-
         private static void Download(string[] args)
         {
             int num = 0;
@@ -120,6 +158,7 @@ namespace l2dcmd
             Console.WriteLine($"下载路径 [PATH] : {args[^1]}");
             Task.Factory.StartNew(async () =>
             {
+                Console.WriteLine("正在获取最新列表 [Getting Newest List()]");
                 var j = new Meow.Rinko.Core.Live2d.Live2dList();
                 Console.WriteLine($"执行下载中 [On Download] - 总计 [Total]:{j.Data.Count}");
                 foreach (var x in j.Data)
