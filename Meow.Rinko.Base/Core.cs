@@ -69,6 +69,22 @@ namespace Meow.Rinko.Core
         /// </summary>
         public readonly static string baseallsongs = "https://bestdori.com/api/songs/meta/all.5.json";
         /// <summary>
+        /// 所有漫画
+        /// </summary>
+        public readonly static string baseallcomic = "https://bestdori.com/api/comics/all.5.json";
+        /// <summary>
+        /// 所有标题图
+        /// </summary>
+        public readonly static string basealltitle = "https://bestdori.com/api/misc/titles.5.json";
+
+        /// <summary>
+        /// 获取某区服的漫画
+        /// </summary>
+        /// <param name="c">区服</param>
+        /// <param name="assetname">漫画</param>
+        /// <returns></returns>
+        public static string Comic(Country c, string assetname) => $"https://bestdori.com/assets/{c}/comic/{(assetname.Contains("fourframe") ? "comic_fourframe" : "comic_singleframe")}/{assetname}_rip/{assetname}.png";
+        /// <summary>
         /// 获取某服务器某档线高的一个档线追踪器
         /// </summary>
         /// <param name="server">服务器</param>
@@ -123,6 +139,11 @@ namespace Meow.Rinko.Core
     /// </summary>
     public static class Bases
     {
+        /// <summary>
+        /// 漫画列表
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<string> BaseComic() => await Get.String(Url.baseallcomic, false);
         /// <summary>
         /// 最近更新
         /// </summary>
