@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Meow.Rinko.Core.Test": {
+      "commandName": "Project",
+      "commandLineArgs": "final"
+    }
+  }
+}
