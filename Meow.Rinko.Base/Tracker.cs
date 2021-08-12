@@ -118,6 +118,9 @@ namespace Meow.Rinko.BasicAnalyze
             EventType = eventtype;
             Country = country;
             var s = new MultiTracker(eventnum, country, eventtype);
+            x.Add(0);
+            y.Add(0);
+            xy.Add((0, 0));
             foreach (var a in s.Tracker)
             {
                 var xx = (a.PCT > 1 ? 1 : a.PCT) * 100;

@@ -23,6 +23,22 @@ namespace ycxcmd
             }
             return (ParaMax.ToArray(), ParaAvg.ToArray(), ParaMin.ToArray());
         };
+        static Func<List<AnalyzeTracker>, double[]> finalX = (List<AnalyzeTracker> ln) =>
+        {
+            Dictionary<double,double> xy = new();
+            foreach (var k in ln)
+            {
+                for (int i = 0; i < k.x.Count; i++)
+                {
+                    xy.Add(k.x[i], k.y[i]);
+                }
+            }
+            var paraxy = (from ir in xy orderby ir.Key ascending select ir).Distinct();
+            var x = from i in paraxy select i.Key;
+            var y = from i in paraxy select i.Value;
+            var P = MathNet.Numerics.Fit.Polynomial(x.ToArray(), y.ToArray(), 5);
+            return P;
+        };
         static void Main(string[] args)
         {
             Country? c = Country.undefined;
@@ -135,19 +151,48 @@ namespace ycxcmd
 
                 Restore rr = new(lbk1, lbk2, lbk3, DateTime.Now);
                 File.WriteAllText(Path.Combine(path, $"Tracker", "Core.listdata"), JsonConvert.SerializeObject(rr));
-
                 Console.WriteLine("-- PROGRAM COMPUTING FINALIZE --");
-
-                (double[] Max, double[] Avg, double[] Min) k1 = finalfunc(lbk1);
-                (double[] Max, double[] Avg, double[] Min) k2 = finalfunc(lbk2);
-                (double[] Max, double[] Avg, double[] Min) k3 = finalfunc(lbk3);
-
-                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-final-100.json"), JsonConvert.SerializeObject((k1, DateTime.Now)));
-                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-final-1000.json"), JsonConvert.SerializeObject((k2, DateTime.Now)));
-                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-final-2000.json"), JsonConvert.SerializeObject((k3, DateTime.Now)));
-
+                var k1 = new Result_Final(finalfunc(lbk1));
+                var k2 = new Result_Final(finalfunc(lbk2));
+                var k3 = new Result_Final(finalfunc(lbk3));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FG-100.json"), JsonConvert.SerializeObject(k1));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FG-1000.json"), JsonConvert.SerializeObject(k2));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FG-2000.json"), JsonConvert.SerializeObject(k3));
+                Console.WriteLine("Programm Final Updated Complete - FG");
+                var kk1 = new Result(finalX(lbk1));
+                var kk2 = new Result(finalX(lbk2));
+                var kk3 = new Result(finalX(lbk3));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FX-100.json"), JsonConvert.SerializeObject(kk1));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FX-1000.json"), JsonConvert.SerializeObject(kk2));
+                File.WriteAllText(Path.Combine(path, $"Tracker", $"{(int)c}-FX-2000.json"), JsonConvert.SerializeObject(kk3));
+                Console.WriteLine("Programm Final Updated Complete - FX");
                 Console.WriteLine("Programm Final Updated Complete");
             }
+        }
+    }
+    public class Result
+    {
+        public double[] Parameter;
+        public int order = 5;
+        public DateTime PresentTime;
+        public Result(double[] parameter)
+        {
+            Parameter = parameter;
+            PresentTime = DateTime.Now;
+        }
+    }
+    public class Result_Final 
+    {
+        public double[] Max;
+        public double[] Avg;
+        public double[] Min;
+        public DateTime PresentTime;
+        public Result_Final((double[] max, double[] avg, double[] min) a)
+        {
+            Max = a.max;
+            Avg = a.avg;
+            Min = a.min;
+            PresentTime = DateTime.Now;
         }
     }
     public class Restore
