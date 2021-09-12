@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>ycxpred</AssemblyName>
+    <RootNamespace>ycxpred</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Meow.Rinko.Base\Meow.Rinko.Core.csproj" />
+    <ProjectReference Include="..\ycxcal\ycxcal.csproj" />
+    <ProjectReference Include="..\ycxcmd\ycxcmd.csproj" />
+  </ItemGroup>
+
+</Project>

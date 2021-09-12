@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ycxmc": {
+      "commandName": "Project",
+      "commandLineArgs": "cn"
+    }
+  }
+}

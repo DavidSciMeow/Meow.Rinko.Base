@@ -18,9 +18,8 @@
     <Authors>DavidSciMeow</Authors>
     <Company>Electronicute</Company>
     <Product>Electronicute.Rinko.*</Product>
-    <Version>2.2.0</Version>
-    <PackageReleaseNotes>another core for DKL and Ycx Core
-更好的榜线分析系统 AnalyzeTracker</PackageReleaseNotes>
+    <Version>2.2.1</Version>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

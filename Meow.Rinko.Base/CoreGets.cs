@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Meow.Rinko.Core.Gets
@@ -27,6 +28,26 @@ namespace Meow.Rinko.Core.Gets
                 throw new($"E0010 EventList:: {ex}");
             }
         }
+        /// <summary>
+        /// 获取当前活动
+        /// </summary>
+        /// <param name="c">区服</param>
+        /// <returns></returns>
+        public (int[] inbound,int[] outbound) EventNow(Country c)
+        {
+            var nts = new Util.Basic.TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
+            var ntsmax = new Util.Basic.TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var inbound = from a in Data 
+                          where a.Value?.startAt?[(int)c] != null && 
+                            long.Parse(a.Value?.startAt?[(int)c]??"0") < nts && 
+                            long.Parse(a.Value?.endAt?[(int)c] ?? "0") > nts 
+                          select a.Key;
+            var outbound = from a in Data 
+                           where a.Value?.startAt?[(int)c] != null && 
+                            long.Parse(a.Value?.startAt?[(int)c]??"0") > ntsmax 
+                           select a.Key;
+            return (inbound.ToArray(), outbound.ToArray());
+        }
     }
     /// <summary>
     /// 卡池列表
@@ -50,6 +71,26 @@ namespace Meow.Rinko.Core.Gets
             {
                 throw new($"E0011 GachaList:: {ex}");
             }
+        }
+        /// <summary>
+        /// 正在进行的招募
+        /// </summary>
+        /// <param name="c">区服</param>
+        /// <returns></returns>
+        public (Model.QGacha[] inbound, Model.QGacha[] outbound) GachaNow(Country c)
+        {
+            var nts = new Util.Basic.TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
+            var ntsmax = new Util.Basic.TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var inbound = from a in Data
+                          where a.Value?.publishedAt?[(int)c] != null &&
+                            long.Parse(a.Value.publishedAt[(int)c] ?? "0") < nts &&
+                            long.Parse(a.Value?.closedAt?[(int)c] ?? "0") > nts
+                          select a.Value;
+            var outbound = from a in Data
+                           where a.Value?.publishedAt?[(int)c] != null &&
+                            long.Parse(a.Value?.publishedAt?[(int)c] ?? "0") > ntsmax
+                           select a.Value;
+            return (inbound.ToArray(), outbound.ToArray());
         }
     }
     /// <summary>

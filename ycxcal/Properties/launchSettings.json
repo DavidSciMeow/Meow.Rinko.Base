@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ycxcal": {
+      "commandName": "Project",
+      "commandLineArgs": "cn"
+    }
+  }
+}

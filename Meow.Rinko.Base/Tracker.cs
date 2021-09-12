@@ -56,6 +56,10 @@ namespace Meow.Rinko.BasicAnalyze
     public class AnalyzeTracker
     {
         /// <summary>
+        /// 是否可以使用
+        /// </summary>
+        public bool Enabled;
+        /// <summary>
         /// 活动号
         /// </summary>
         public int EventNum;
@@ -111,8 +115,10 @@ namespace Meow.Rinko.BasicAnalyze
         /// <param name="eventtype">活动榜线类型</param>
         /// <param name="country">区服</param>
         /// <param name="order">阶(默认为5)</param>
-        public AnalyzeTracker(int eventnum, int eventtype, Country country, int order = 5)
+        /// <param name="_enable">是否使用</param>
+        public AnalyzeTracker(int eventnum, int eventtype, Country country, int order = 5,bool _enable = true)
         {
+            Enabled = _enable;
             Order = order;
             EventNum = eventnum;
             EventType = eventtype;
