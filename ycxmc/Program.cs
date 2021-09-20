@@ -18,6 +18,7 @@ namespace ycxpred
             public bool enable = true;
             public string Method = "S-M-Recursive";
             public double[] Para;
+            public double pctNow;
             public DateTime modelTime;
             public DateTime predictTime;
             public double dy;
@@ -101,9 +102,15 @@ namespace ycxpred
         static async Task<bool> GenerateFile(Country c, int k)
         {
             Tracker[] t = null;
+            double pctx = 0;
             try
             {
-                t = new Meow.Rinko.BasicAnalyze.MultiTracker(eventNow, c, k).Tracker;
+                var sx = new Meow.Rinko.BasicAnalyze.MultiTracker(eventNow, c, k);
+                t = sx.Tracker;
+                var sat = sx.@event.startAt;
+                var eat = sx.@event.endAt;
+                var timenow = new Meow.Util.Basic.TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
+                pctx = (timenow - (double)sat) / ((double)eat - (double)sat);
             }
             catch
             {
@@ -111,6 +118,7 @@ namespace ycxpred
                 {
                     var ss = await Meow.Util.Network.Http.Get.String($"https://app.rinko.com.cn/Query/TrackerNow/{(int)c}/{k}");
                     t = JObject.Parse(ss)["tracker"].ToObject<Tracker[]>();
+                    pctx = JObject.Parse(ss)["pct"].ToObject<double>();
                     Console.WriteLine($"{DateTime.Now} {(int)c}-{k} Event Tracker Networked");
                 }
                 catch
@@ -125,8 +133,8 @@ namespace ycxpred
                 pct = -1;
             }
             var (predictTime, list, Pavg, prednow) = await Calc(c, k, pct);
-            var dy = Math.Abs(prednow - t.Last().Score);
-            var x = new retval() { modelTime = predictTime, modelVal = list, Para = Pavg, Tracker = t, dy = dy, predictTime = DateTime.Now };
+            var dy = t.Last().Score - prednow;
+            var x = new retval() { pctNow = pctx, modelTime = predictTime, modelVal = list, Para = Pavg, Tracker = t, dy = dy, predictTime = DateTime.Now };
             Directory.CreateDirectory(path);
             try
             {
