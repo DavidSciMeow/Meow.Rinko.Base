@@ -87,23 +87,36 @@ namespace ycxcmd
                     Console.WriteLine($"DIRC:{Path.Combine(path, "Tracker")}");
                     var l = new Meow.Rinko.Core.Gets.EventList().Data;
                     var r = (from a in l where a.Value.eventName[(int)c] != null orderby a.Key ascending select a);
+                    
                     foreach (var i in r)
                     {
                         RenderingBlock(c, path, i.Key);
+                    }
+                    try
+                    {
+                        if (args[2].Equals("S"))
+                        {
+                            Console.WriteLine("Rendering Last Block");
+                            RenderingBlock(c, path, r.Last().Key, true);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("NO Strict-Mode enable");
                     }
                     Console.WriteLine("-- PROGRAM COMPUTING FINALIZE --");
                     return;
                 }
             }
         }
-        static void RenderingBlock(Country? c, string path, int i)
+        static void RenderingBlock(Country? c, string path, int i, bool _useStrict = false)
         {
             var p1 = Path.Combine(path, $"Tracker", $"{(int)c}-{i}-{100}.json");
             var p2 = Path.Combine(path, $"Tracker", $"{(int)c}-{i}-{1000}.json");
             var p3 = Path.Combine(path, $"Tracker", $"{(int)c}-{i}-{2000}.json");
             try
             {
-                if (!File.Exists(p1))
+                if (!File.Exists(p1) || _useStrict)
                 {
                     var bk1 = new AnalyzeTracker(i, 100, c ?? Country.cn);
                     File.WriteAllText(p1, JsonConvert.SerializeObject(bk1));
@@ -121,7 +134,7 @@ namespace ycxcmd
             }
             try
             {
-                if (!File.Exists(p2))
+                if (!File.Exists(p2) || _useStrict)
                 {
                     var bk2 = new AnalyzeTracker(i, 1000, c ?? Country.cn);
                     File.WriteAllText(p2, JsonConvert.SerializeObject(bk2));
@@ -139,7 +152,7 @@ namespace ycxcmd
             }
             try
             {
-                if (!File.Exists(p3))
+                if (!File.Exists(p3) || _useStrict)
                 {
                     var bk3 = new AnalyzeTracker(i, 2000, c ?? Country.cn);
                     File.WriteAllText(p3, JsonConvert.SerializeObject(bk3));

@@ -1,0 +1,11 @@
+digraph "Meow.Rinko.Core.Gets.Card.Card"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Meow.Rinko.Core.Gets.Card.Card",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="初始化某卡片"];
+  Node1 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Meow.Rinko.Core.Bases.Cards",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_meow_1_1_rinko_1_1_core_1_1_bases.html#ac3afc0c8f348a8a93f9655e934b008cf",tooltip="获得某个固定的卡的数据"];
+}

@@ -15,7 +15,7 @@ namespace ycxpred
     {
         public class retval
         {
-            public bool enable = true;
+            public bool enable = false;
             public string Method = "S-M-Recursive";
             public double[] Para;
             public double pctNow;
@@ -28,6 +28,7 @@ namespace ycxpred
         static string path = "./Tracker";
         static int eventNow = -1;
         static bool kernelStatus = true;
+        static bool kernelRefixStatus = true;
         static DateTime upTime;
         static async Task Main(string[] args)
         {
@@ -50,6 +51,7 @@ namespace ycxpred
                         if (eventNow != -1)
                         {
                             kernelStatus = true;
+                            kernelRefixStatus = true;
                             var _1 = await GenerateFile(c, 100);
                             var _2 = await GenerateFile(c, 1000);
                             var _3 = await GenerateFile(c, 2000);
@@ -64,11 +66,8 @@ namespace ycxpred
                                 DeleteFile(c, 2000);
                                 Console.WriteLine($"Complete Reset");
                                 Console.WriteLine("NO Active Event Calculate Matrix");
-                                string[] varx = { args[0], "./" };
-                                ycxcmd.Program.Main(varx);
-                                Console.WriteLine("Update Complete");
-                                ycxcal.Program.Main(varx);
-                                Console.WriteLine("Calculate Complete");
+                                ycxcmd.Program.Main(new string[] { args[0], "./" ,"S"});
+                                ycxcal.Program.Main(new string[] { args[0], "./" });
                                 upTime = DateTime.Now;
                                 kernelStatus = false;
                             }
@@ -89,13 +88,13 @@ namespace ycxpred
                     }
                     Console.WriteLine($"{DateTime.Now} - pracompl");
                     Console.WriteLine($"{DateTime.Now} - Sleep");
-                    System.Threading.Thread.Sleep(new TimeSpan(0, 5, 0));
+                    System.Threading.Thread.Sleep(new TimeSpan(0, 15, 0));
                     Console.Clear();
                     Console.WriteLine($"{DateTime.Now} - Reconstruct");
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine($"{DateTime.Now} : ERR on {ex.Message} Rejected");
+                    Console.WriteLine($"{DateTime.Now} : ERR on \n{ex.Message}");
                 }
             }
         }
@@ -152,7 +151,7 @@ namespace ycxpred
         {
             try
             {
-                var x = new retval() { enable = false, modelTime = DateTime.Now, modelVal = null, Para = null, Tracker = null, dy = 0, predictTime = DateTime.Now };
+                var x = new retval() { modelTime = DateTime.Now, modelVal = null, Para = null, Tracker = null, dy = 0, predictTime = DateTime.Now };
                 File.WriteAllText($"{path}/prednow-{(int)c}-{k}.json", Newtonsoft.Json.JsonConvert.SerializeObject(x, Newtonsoft.Json.Formatting.Indented));
                 return true;
             }
