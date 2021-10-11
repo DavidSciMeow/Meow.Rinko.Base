@@ -1,0 +1,5 @@
+var class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_maindeckusersituations =
+[
+    [ "Data", "class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_maindeckusersituations_1_1_data.html", "class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_maindeckusersituations_1_1_data" ],
+    [ "entries", "class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_maindeckusersituations.html#a2ab56901d0e4fd10116866959c009db5", null ]
+];

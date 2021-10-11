@@ -1,7 +1,0 @@
-digraph "Meow.Rinko.Core.Url"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{Meow.Rinko.Core.Url\n|+ basenews\l+ basesongs\l+ basegachas\l+ baseevents\l+ basecharacters\l+ basearchives\l+ baseallsongs\l+ baseallcomic\l+ basealltitle\l|+ Comic()\l+ TrackerURL()\l+ EventURL()\l+ GachaURL()\l+ CardsURL()\l+ CharactersURL()\l+ SearchPlayer()\l+ SyncPlayer()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="原始的Url库"];
-}

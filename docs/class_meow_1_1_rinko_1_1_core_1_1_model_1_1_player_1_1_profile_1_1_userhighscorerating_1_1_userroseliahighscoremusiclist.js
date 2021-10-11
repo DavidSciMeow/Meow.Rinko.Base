@@ -1,0 +1,4 @@
+var class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_userhighscorerating_1_1_userroseliahighscoremusiclist =
+[
+    [ "entries", "class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_userhighscorerating_1_1_userroseliahighscoremusiclist.html#a23bf978eb8d5f710bac6b260a949ee46", null ]
+];

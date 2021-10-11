@@ -46,18 +46,24 @@ var NAVTREE =
       [ "类索引", "classes.html", null ],
       [ "类继承关系", "hierarchy.html", "hierarchy" ],
       [ "类成员", "functions.html", [
-        [ "全部", "functions.html", null ],
+        [ "全部", "functions.html", "functions_dup" ],
         [ "函数", "functions_func.html", null ],
         [ "变量", "functions_vars.html", null ],
-        [ "属性", "functions_prop.html", null ]
+        [ "属性", "functions_prop.html", "functions_prop" ]
       ] ]
+    ] ],
+    [ "文件", "files.html", [
+      [ "文件列表", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_api_8cs_source.html",
+"class_meow_1_1_rinko_1_1_core_1_1_model_1_1_card.html#a0a5b961fd17654fb0595681c794045e8",
+"class_meow_1_1_rinko_1_1_core_1_1_model_1_1_gacha_1_1_information.html",
+"class_meow_1_1_rinko_1_1_core_1_1_model_1_1_player_1_1_profile_1_1_userprofiledegreemap_1_1_data.html#a7c342c4d1c7f7b9dddc18f27425937eb"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

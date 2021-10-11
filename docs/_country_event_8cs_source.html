@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Rinko- Base Doc: D:/Source/Repos/Meow.Rinko.Base/Meow.Rinko.Base/BAModel/CountryEvent.cs 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Rinko- Base Doc<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">Basic C# Bandori-Operative Library Powered By Bestdori.com</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_country_event_8cs_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">CountryEvent.cs</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using</span> <a class="code hl_namespace" href="namespace_meow.html">Meow</a>.<a class="code hl_namespace" href="namespace_meow_1_1_rinko.html">Rinko</a>.<a class="code hl_namespace" href="namespace_meow_1_1_rinko_1_1_core.html">Core</a>;</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using</span> System;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using</span> System.Collections.Generic;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using</span> System.Linq;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using</span> System.Text;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using</span> System.Threading.Tasks;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespace_meow_1_1_rinko_1_1_basic_analyze.html">    8</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_meow_1_1_rinko_1_1_basic_analyze_1_1_model.html">Meow.Rinko.BasicAnalyze.Model</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html">   13</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html">CountryEvent</a></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac8b80d46b8734b4c18432474790a2d18">   18</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac8b80d46b8734b4c18432474790a2d18">eventType</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a23bd561fda84fa6e8be5d4648d2eb6e8">   22</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a23bd561fda84fa6e8be5d4648d2eb6e8">eventName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a85cd5b616e39b3c49ceebfb9d608f9ac">   26</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a85cd5b616e39b3c49ceebfb9d608f9ac">assetBundleName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac444096164c3a35e8c947775ecb800de">   30</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac444096164c3a35e8c947775ecb800de">bannerAssetBundleName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a78512a456e51cccac193e3f67cf12e80">   34</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a78512a456e51cccac193e3f67cf12e80">startAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a467f36667bbf4bc26fe0be3773b2aad2">   38</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a467f36667bbf4bc26fe0be3773b2aad2">endAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ae07a6f899a82cd2720d0fdb6c2da6d70">   42</a></span>        <span class="keyword">public</span> <span class="keywordtype">bool</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ae07a6f899a82cd2720d0fdb6c2da6d70">enableFlag</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ad6b527ab1734bc7fb4ac8469744f05a6">   46</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ad6b527ab1734bc7fb4ac8469744f05a6">publicStartAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a4a1e81b3cbbe753efe7dfece4dea39c9">   50</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a4a1e81b3cbbe753efe7dfece4dea39c9">publicEndAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#aa9b32d87952ce87eca01b6f1f53db4cd">   54</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#aa9b32d87952ce87eca01b6f1f53db4cd">distributionStartAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a3280edf190495c7dfd4bf4fb0ca204bc">   58</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a3280edf190495c7dfd4bf4fb0ca204bc">distributionEndAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a810e411c0bb5c521ec6e18cffffec8cd">   62</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a810e411c0bb5c521ec6e18cffffec8cd">bgmAssetBundleName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a0f694c584e8220eef79bb7791ad366c9">   66</a></span>        <span class="keyword">public</span> <span class="keywordtype">string</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a0f694c584e8220eef79bb7791ad366c9">bgmFileName</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a6ba4f5083d5ad45a944a50ae447907f7">   70</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a6ba4f5083d5ad45a944a50ae447907f7">aggregateEndAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a8542de1266247fafe6c672a020d3ec70">   74</a></span>        <span class="keyword">public</span> <span class="keywordtype">long</span>? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a8542de1266247fafe6c672a020d3ec70">exchangeEndAt</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a663e2fa3914d34f025fc855b473a91f6">   78</a></span>        <span class="keyword">public</span> Core.Model.Event.Pointreward[][]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a663e2fa3914d34f025fc855b473a91f6">pointRewards</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a882c34879ce13a24e34ee10abc6644af">   82</a></span>        <span class="keyword">public</span> Core.Model.Event.Rankingreward[][]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a882c34879ce13a24e34ee10abc6644af">rankingRewards</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#adc1c6567fa67193e0091f855b53fb052">   86</a></span>        <span class="keyword">public</span> Core.Model.Event.Attribute[]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#adc1c6567fa67193e0091f855b53fb052">attributes</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a7ad0dcbc20618792c42103c98bd38e83">   90</a></span>        <span class="keyword">public</span> Core.Model.Event.Character[]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a7ad0dcbc20618792c42103c98bd38e83">characters</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a507665d492ec564ce10c5eb4014b8815">   94</a></span>        <span class="keyword">public</span> Core.Model.Event.Story[]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a507665d492ec564ce10c5eb4014b8815">stories</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a2c62d79ca41f7b4bb2d35204c6031266">   98</a></span>        <span class="keyword">public</span> <span class="keywordtype">int</span>[]? <a class="code hl_property" href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a2c62d79ca41f7b4bb2d35204c6031266">rewardCards</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html">Meow.Rinko.BasicAnalyze.Model.CountryEvent</a></div><div class="ttdoc">确定区域的活动查询</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00013">CountryEvent.cs:14</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a0f694c584e8220eef79bb7791ad366c9"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a0f694c584e8220eef79bb7791ad366c9">Meow.Rinko.BasicAnalyze.Model.CountryEvent.bgmFileName</a></div><div class="ttdeci">string? bgmFileName</div><div class="ttdoc">BGM文件名</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00066">CountryEvent.cs:66</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a23bd561fda84fa6e8be5d4648d2eb6e8"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a23bd561fda84fa6e8be5d4648d2eb6e8">Meow.Rinko.BasicAnalyze.Model.CountryEvent.eventName</a></div><div class="ttdeci">string? eventName</div><div class="ttdoc">活动名</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00022">CountryEvent.cs:22</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a2c62d79ca41f7b4bb2d35204c6031266"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a2c62d79ca41f7b4bb2d35204c6031266">Meow.Rinko.BasicAnalyze.Model.CountryEvent.rewardCards</a></div><div class="ttdeci">int?[] rewardCards</div><div class="ttdoc">奖励卡片</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00098">CountryEvent.cs:98</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a3280edf190495c7dfd4bf4fb0ca204bc"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a3280edf190495c7dfd4bf4fb0ca204bc">Meow.Rinko.BasicAnalyze.Model.CountryEvent.distributionEndAt</a></div><div class="ttdeci">long? distributionEndAt</div><div class="ttdoc">奖励分发结束时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00058">CountryEvent.cs:58</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a467f36667bbf4bc26fe0be3773b2aad2"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a467f36667bbf4bc26fe0be3773b2aad2">Meow.Rinko.BasicAnalyze.Model.CountryEvent.endAt</a></div><div class="ttdeci">long? endAt</div><div class="ttdoc">结束时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00038">CountryEvent.cs:38</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a4a1e81b3cbbe753efe7dfece4dea39c9"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a4a1e81b3cbbe753efe7dfece4dea39c9">Meow.Rinko.BasicAnalyze.Model.CountryEvent.publicEndAt</a></div><div class="ttdeci">long? publicEndAt</div><div class="ttdoc">确定结束时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00050">CountryEvent.cs:50</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a507665d492ec564ce10c5eb4014b8815"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a507665d492ec564ce10c5eb4014b8815">Meow.Rinko.BasicAnalyze.Model.CountryEvent.stories</a></div><div class="ttdeci">Core.Model.Event.? Story[] stories</div><div class="ttdoc">故事列表</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00094">CountryEvent.cs:94</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a663e2fa3914d34f025fc855b473a91f6"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a663e2fa3914d34f025fc855b473a91f6">Meow.Rinko.BasicAnalyze.Model.CountryEvent.pointRewards</a></div><div class="ttdeci">Core.Model.Event.? Pointreward[][] pointRewards</div><div class="ttdoc">分数奖励</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00078">CountryEvent.cs:78</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a6ba4f5083d5ad45a944a50ae447907f7"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a6ba4f5083d5ad45a944a50ae447907f7">Meow.Rinko.BasicAnalyze.Model.CountryEvent.aggregateEndAt</a></div><div class="ttdeci">long? aggregateEndAt</div><div class="ttdoc">合并结束时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00070">CountryEvent.cs:70</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a78512a456e51cccac193e3f67cf12e80"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a78512a456e51cccac193e3f67cf12e80">Meow.Rinko.BasicAnalyze.Model.CountryEvent.startAt</a></div><div class="ttdeci">long? startAt</div><div class="ttdoc">启动时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00034">CountryEvent.cs:34</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a7ad0dcbc20618792c42103c98bd38e83"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a7ad0dcbc20618792c42103c98bd38e83">Meow.Rinko.BasicAnalyze.Model.CountryEvent.characters</a></div><div class="ttdeci">Core.Model.Event.? Character[] characters</div><div class="ttdoc">加成角色</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00090">CountryEvent.cs:90</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a810e411c0bb5c521ec6e18cffffec8cd"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a810e411c0bb5c521ec6e18cffffec8cd">Meow.Rinko.BasicAnalyze.Model.CountryEvent.bgmAssetBundleName</a></div><div class="ttdeci">string? bgmAssetBundleName</div><div class="ttdoc">BGM资源包</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00062">CountryEvent.cs:62</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a8542de1266247fafe6c672a020d3ec70"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a8542de1266247fafe6c672a020d3ec70">Meow.Rinko.BasicAnalyze.Model.CountryEvent.exchangeEndAt</a></div><div class="ttdeci">long? exchangeEndAt</div><div class="ttdoc">交换结束时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00074">CountryEvent.cs:74</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a85cd5b616e39b3c49ceebfb9d608f9ac"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a85cd5b616e39b3c49ceebfb9d608f9ac">Meow.Rinko.BasicAnalyze.Model.CountryEvent.assetBundleName</a></div><div class="ttdeci">string? assetBundleName</div><div class="ttdoc">资源包名</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00026">CountryEvent.cs:26</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_a882c34879ce13a24e34ee10abc6644af"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#a882c34879ce13a24e34ee10abc6644af">Meow.Rinko.BasicAnalyze.Model.CountryEvent.rankingRewards</a></div><div class="ttdeci">Core.Model.Event.? Rankingreward[][] rankingRewards</div><div class="ttdoc">排名奖励</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00082">CountryEvent.cs:82</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_aa9b32d87952ce87eca01b6f1f53db4cd"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#aa9b32d87952ce87eca01b6f1f53db4cd">Meow.Rinko.BasicAnalyze.Model.CountryEvent.distributionStartAt</a></div><div class="ttdeci">long? distributionStartAt</div><div class="ttdoc">奖励分发时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00054">CountryEvent.cs:54</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_ac444096164c3a35e8c947775ecb800de"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac444096164c3a35e8c947775ecb800de">Meow.Rinko.BasicAnalyze.Model.CountryEvent.bannerAssetBundleName</a></div><div class="ttdeci">string? bannerAssetBundleName</div><div class="ttdoc">标题图资源包名</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00030">CountryEvent.cs:30</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_ac8b80d46b8734b4c18432474790a2d18"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ac8b80d46b8734b4c18432474790a2d18">Meow.Rinko.BasicAnalyze.Model.CountryEvent.eventType</a></div><div class="ttdeci">string? eventType</div><div class="ttdoc">活动类型</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00018">CountryEvent.cs:18</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_ad6b527ab1734bc7fb4ac8469744f05a6"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ad6b527ab1734bc7fb4ac8469744f05a6">Meow.Rinko.BasicAnalyze.Model.CountryEvent.publicStartAt</a></div><div class="ttdeci">long? publicStartAt</div><div class="ttdoc">确定开始时间</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00046">CountryEvent.cs:46</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_adc1c6567fa67193e0091f855b53fb052"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#adc1c6567fa67193e0091f855b53fb052">Meow.Rinko.BasicAnalyze.Model.CountryEvent.attributes</a></div><div class="ttdeci">Core.Model.Event.? Attribute[] attributes</div><div class="ttdoc">加成属性</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00086">CountryEvent.cs:86</a></div></div>
+<div class="ttc" id="aclass_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event_html_ae07a6f899a82cd2720d0fdb6c2da6d70"><div class="ttname"><a href="class_meow_1_1_rinko_1_1_basic_analyze_1_1_model_1_1_country_event.html#ae07a6f899a82cd2720d0fdb6c2da6d70">Meow.Rinko.BasicAnalyze.Model.CountryEvent.enableFlag</a></div><div class="ttdeci">bool? enableFlag</div><div class="ttdoc">是否启用</div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00042">CountryEvent.cs:42</a></div></div>
+<div class="ttc" id="anamespace_meow_1_1_rinko_1_1_basic_analyze_1_1_model_html"><div class="ttname"><a href="namespace_meow_1_1_rinko_1_1_basic_analyze_1_1_model.html">Meow.Rinko.BasicAnalyze.Model</a></div><div class="ttdef"><b>Definition:</b> <a href="_country_event_8cs_source.html#l00008">CountryEvent.cs:9</a></div></div>
+<div class="ttc" id="anamespace_meow_1_1_rinko_1_1_core_html"><div class="ttname"><a href="namespace_meow_1_1_rinko_1_1_core.html">Meow.Rinko.Core</a></div><div class="ttdef"><b>Definition:</b> <a href="_api_8cs_source.html#l00008">Api.cs:9</a></div></div>
+<div class="ttc" id="anamespace_meow_1_1_rinko_html"><div class="ttname"><a href="namespace_meow_1_1_rinko.html">Meow.Rinko</a></div><div class="ttdef"><b>Definition:</b> <a href="_api_8cs_source.html#l00008">Api.cs:9</a></div></div>
+<div class="ttc" id="anamespace_meow_html"><div class="ttname"><a href="namespace_meow.html">Meow</a></div><div class="ttdef"><b>Definition:</b> <a href="_api_8cs_source.html#l00008">Api.cs:9</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_7b98f88bffbed4b390b5f8f520d9c08e.html">Source</a></li><li class="navelem"><a class="el" href="dir_1ac246dec533c21b93294472a4326ee6.html">Repos</a></li><li class="navelem"><a class="el" href="dir_5b3c84bf2ca203d5e5e5710695bfd60c.html">Meow.Rinko.Base</a></li><li class="navelem"><a class="el" href="dir_f05077a9f22c01e46d01852f343508a6.html">Meow.Rinko.Base</a></li><li class="navelem"><a class="el" href="dir_9d1770feb2fda4aac024766d3c520eec.html">BAModel</a></li><li class="navelem"><b>CountryEvent.cs</b></li>
+    <li class="footer">生成于 2021年 十月 11日 星期一 15:05:44 , 为 Rinko- Base Doc使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+  </ul>
+</div>
+</body>
+</html>

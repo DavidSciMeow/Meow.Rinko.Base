@@ -1,9 +1,0 @@
-digraph "Meow.Rinko.BasicAnalyze.MultiTracker"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{Meow.Rinko.BasicAnalyze.\lMultiTracker\n|+ C\l|+ MultiTracker()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="多功能榜线高度转换器"];
-  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +Tracker\n+event" ,arrowhead="odiamond",fontname="Helvetica"];
-  Node2 [label="{Model\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
-}

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['song_0',['Song',['../class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song.html#a2fdf5d9d91899b0e7676e09605420ca4',1,'Meow::Rinko::Core::Gets::Song']]],
-  ['songpcts_1',['SongPcts',['../class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song_pcts.html#a2c44031c6fe14055cf1158a01a8c4fd6',1,'Meow::Rinko::Core::Gets::SongPcts']]]
+  ['news_0',['News',['../class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_news.html#ab0c91a3ec5ac781cf8e2105e200f602b',1,'Meow::Rinko::Core::Gets::News']]]
 ];

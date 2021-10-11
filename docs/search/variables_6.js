@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resultstatus_0',['ResultStatus',['../class_meow_1_1_rinko_1_1_core_1_1_api_1_1_b_d_r.html#acbe452fff6a1ef3ad6e025b2b0a128f8',1,'Meow::Rinko::Core::Api::BDR']]]
+  ['inbound_0',['inbound',['../class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_event_list.html#a1371884867d53e6b67b94a3be074afc9',1,'Meow.Rinko.Core.Gets.EventList.inbound()'],['../class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_gacha_list.html#ae0e236438388e45eb23a0a223cefea2b',1,'Meow.Rinko.Core.Gets.GachaList.inbound()']]]
 ];

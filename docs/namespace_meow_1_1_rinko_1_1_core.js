@@ -2,6 +2,8 @@ var namespace_meow_1_1_rinko_1_1_core =
 [
     [ "Api", "namespace_meow_1_1_rinko_1_1_core_1_1_api.html", "namespace_meow_1_1_rinko_1_1_core_1_1_api" ],
     [ "Gets", "namespace_meow_1_1_rinko_1_1_core_1_1_gets.html", "namespace_meow_1_1_rinko_1_1_core_1_1_gets" ],
+    [ "Live2d", "namespace_meow_1_1_rinko_1_1_core_1_1_live2d.html", "namespace_meow_1_1_rinko_1_1_core_1_1_live2d" ],
+    [ "Model", "namespace_meow_1_1_rinko_1_1_core_1_1_model.html", "namespace_meow_1_1_rinko_1_1_core_1_1_model" ],
     [ "Country", "namespace_meow_1_1_rinko_1_1_core.html#acd6a6b7a8449aef01b7b4256610a026a", [
       [ "jp", "namespace_meow_1_1_rinko_1_1_core.html#acd6a6b7a8449aef01b7b4256610a026aa55add3d845bfcd87a9b0949b0da49c0a", null ],
       [ "en", "namespace_meow_1_1_rinko_1_1_core.html#acd6a6b7a8449aef01b7b4256610a026aa9cfefed8fb9497baa5cd519d7d2bb5d7", null ],
