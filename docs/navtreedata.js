@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Rinko Base-Doc", "index.html", [
+  [ "Rinko- Base Doc", "index.html", [
     [ "Meow.Rinko.Base", "md__d___source__repos__meow__rinko__base__meow__rinko__base__r_e_a_d_m_e.html", [
       [ "A C# Bestdori! Basic operation library", "md__d___source__repos__meow__rinko__base__meow__rinko__base__r_e_a_d_m_e.html#autotoc_md1", null ],
       [ "[一个C#关于Bestdori的基础操作库]", "md__d___source__repos__meow__rinko__base__meow__rinko__base__r_e_a_d_m_e.html#autotoc_md2", [
@@ -51,17 +51,13 @@ var NAVTREE =
         [ "变量", "functions_vars.html", null ],
         [ "属性", "functions_prop.html", null ]
       ] ]
-    ] ],
-    [ "文件", "files.html", [
-      [ "文件列表", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_api_8cs.html",
-"namespace_meow_1_1_rinko_1_1_core.html#acd6a6b7a8449aef01b7b4256610a026a"
+"annotated.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

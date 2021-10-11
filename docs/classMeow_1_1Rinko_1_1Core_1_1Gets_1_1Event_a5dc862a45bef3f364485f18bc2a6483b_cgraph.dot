@@ -1,0 +1,11 @@
+digraph "Meow.Rinko.Core.Gets.Event.Event"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Meow.Rinko.Core.Gets.Event.\lEvent",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="初始化活动数据"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Meow.Rinko.Core.Bases.Event",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMeow_1_1Rinko_1_1Core_1_1Bases.html#a9ea6f9d5d21e7c2a560da264608538ab",tooltip="获取某个固定活动的URL"];
+  Node1 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

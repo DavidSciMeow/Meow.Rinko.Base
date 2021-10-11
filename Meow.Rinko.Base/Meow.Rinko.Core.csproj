@@ -14,7 +14,8 @@
     <RepositoryType>gitrepo</RepositoryType>
     <PackageTags>Bestdori Bangdream Operative-Library</PackageTags>
     <NeutralLanguage>zh</NeutralLanguage>
-    <Description>A C# Bestdori! Basic operation library</Description>
+    <Description>A C# Bestdori! Basic operation library
+usage at: https://davidscimeow.github.io/Meow.Rinko.Base/index.html</Description>
     <Authors>DavidSciMeow</Authors>
     <Company>Electronicute</Company>
     <Product>Electronicute.Rinko.*</Product>

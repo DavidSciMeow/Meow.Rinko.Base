@@ -26,9 +26,7 @@ var annotated_dup =
             [ "News", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_news.html", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_news" ],
             [ "Song", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song.html", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song" ],
             [ "SongPcts", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song_pcts.html", "class_meow_1_1_rinko_1_1_core_1_1_gets_1_1_song_pcts" ]
-          ] ],
-          [ "Bases", "class_meow_1_1_rinko_1_1_core_1_1_bases.html", "class_meow_1_1_rinko_1_1_core_1_1_bases" ],
-          [ "Url", "class_meow_1_1_rinko_1_1_core_1_1_url.html", "class_meow_1_1_rinko_1_1_core_1_1_url" ]
+          ] ]
         ] ]
       ] ]
     ] ]

@@ -1,0 +1,11 @@
+digraph "Meow.Rinko.Core.Bases.Gacha"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="Meow.Rinko.Core.Bases.Gacha",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="获得某个固定编号卡池的数据"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Meow.Rinko.Core.Gets.Gacha.\lGacha",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classMeow_1_1Rinko_1_1Core_1_1Gets_1_1Gacha.html#ab59bcac2563b736932f0f4d18a9582f2",tooltip="初始化某卡池"];
+  Node2 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

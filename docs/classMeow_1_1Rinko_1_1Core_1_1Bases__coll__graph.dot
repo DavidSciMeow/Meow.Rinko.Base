@@ -1,0 +1,7 @@
+digraph "Meow.Rinko.Core.Bases"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Meow.Rinko.Core.Bases\n||+ BaseComic()\l+ Basenews()\l+ Basesongs()\l+ Basegachas()\l+ Baseevents()\l+ Basecharacters()\l+ Basearchives()\l+ Baseallsongs()\l+ Tracker()\l+ SyncPlayer()\l和 8 更多...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="直接获取"];
+}

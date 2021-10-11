@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resultstatus_0',['ResultStatus',['../class_meow_1_1_rinko_1_1_core_1_1_api_1_1_b_d_r.html#acbe452fff6a1ef3ad6e025b2b0a128f8',1,'Meow::Rinko::Core::Api::BDR']]]
+  ['tracker_0',['Tracker',['../class_meow_1_1_rinko_1_1_basic_analyze_1_1_multi_tracker.html#a23f9140b5c4df748f2212842c92734db',1,'Meow::Rinko::BasicAnalyze::MultiTracker']]]
 ];

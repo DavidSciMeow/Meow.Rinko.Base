@@ -3,9 +3,9 @@ digraph "Meow.Rinko.Core.Api.BDR"
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="Meow.Rinko.Core.Api.BDR",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="所有带参数查询的返回基类"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="Meow.Rinko.Core.Api.Bandori\lPlayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_meow_1_1_rinko_1_1_core_1_1_api_1_1_bandori_player.html",tooltip="查询一个玩家的信息"];
-  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="Meow.Rinko.Core.Api.Tracker",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_meow_1_1_rinko_1_1_core_1_1_api_1_1_tracker.html",tooltip="榜线高度查询"];
+  Node1 [label="{Meow.Rinko.Core.Api.BDR\n|+ ResultStatus\l|# DoRectify()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="所有带参数查询的返回基类"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{Meow.Rinko.Core.Api.Bandori\lPlayer\n|+ Data\l|+ BandoriPlayer()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_meow_1_1_rinko_1_1_core_1_1_api_1_1_bandori_player.html",tooltip="查询一个玩家的信息"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node3 [label="{Meow.Rinko.Core.Api.Tracker\n|+ cutoffs\l|+ Tracker()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_meow_1_1_rinko_1_1_core_1_1_api_1_1_tracker.html",tooltip="榜线高度查询"];
 }
