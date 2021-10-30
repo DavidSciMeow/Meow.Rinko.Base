@@ -55,7 +55,6 @@ namespace Meow.Rinko.Core.Api
             cutoffs = JArray.Parse(
                 DoRectify(
                     Bases.Tracker(server, ex, tier)
-                    .GetAwaiter().GetResult()
                     )?[nameof(cutoffs)]?.ToString() ?? "[]"
                 )?.ToObject<Model.Tracker[]>();
     }
@@ -78,7 +77,7 @@ namespace Meow.Rinko.Core.Api
         public BandoriPlayer(Country server, long PlayerId, int Mode = 0) => 
             Data = DoRectify(
                 Bases.SearchPlayer(server, PlayerId, Mode)
-                .GetAwaiter().GetResult()
+                
                 )?["data"]?.ToObject<Model.Player>();
     }
 }

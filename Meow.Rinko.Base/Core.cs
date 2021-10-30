@@ -1,6 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Net;
 using System.Threading.Tasks;
-using Meow.Util.Network.Http;
 using Newtonsoft.Json;
 
 namespace Meow.Rinko.Core
@@ -143,35 +144,35 @@ namespace Meow.Rinko.Core
         /// 漫画列表
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> BaseComic() => await Get.String(Url.baseallcomic, false);
+        public static string BaseComic() => String(Url.baseallcomic);
         /// <summary>
         /// 最近更新
         /// </summary>
-        public static async Task<string> Basenews() => await Get.String(Url.basenews, false);
+        public static string Basenews() => String(Url.basenews);
         /// <summary>
         /// 所有歌曲
         /// </summary>
-        public static async Task<string> Basesongs() => await Get.String(Url.basesongs, false);
+        public static string Basesongs() => String(Url.basesongs);
         /// <summary>
         /// 所有卡池
         /// </summary>
-        public static async Task<string> Basegachas() => await Get.String(Url.basegachas, false);
+        public static string Basegachas() => String(Url.basegachas);
         /// <summary>
         /// 所有活动
         /// </summary>
-        public static async Task<string> Baseevents() => await Get.String(Url.baseevents, false);
+        public static string Baseevents() => String(Url.baseevents);
         /// <summary>
         /// 所有角色
         /// </summary>
-        public static async Task<string> Basecharacters() => await Get.String(Url.basecharacters, false);
+        public static string Basecharacters() => String(Url.basecharacters);
         /// <summary>
         /// 所有资源
         /// </summary>
-        public static async Task<string> Basearchives() => await Get.String(Url.basearchives, false);
+        public static string Basearchives() => String(Url.basearchives);
         /// <summary>
         /// 所有歌曲计算
         /// </summary>
-        public static async Task<string> Baseallsongs() => await Get.String(Url.baseallsongs, false);
+        public static string Baseallsongs() => String(Url.baseallsongs);
         /// <summary>
         /// 获取某服务器某档线高的一个档线追踪器
         /// </summary>
@@ -179,7 +180,7 @@ namespace Meow.Rinko.Core
         /// <param name="ex">活动编号</param>
         /// <param name="tier">榜线高</param>
         /// <returns></returns>
-        public static async Task<string> Tracker(Country server, int ex, int tier) => await Get.String(Url.TrackerURL(server, ex, tier), false);
+        public static string Tracker(Country server, int ex, int tier) => String(Url.TrackerURL(server, ex, tier));
         /// <summary>
         /// 同步Bestdori玩家
         /// </summary>
@@ -188,31 +189,31 @@ namespace Meow.Rinko.Core
         /// <param name="limit">限制高</param>
         /// <param name="offset">偏移</param>
         /// <returns></returns>
-        public static async Task<string> SyncPlayer(Country server, int stat, int limit, int offset) => await Get.String(Url.SyncPlayer(server, stat, limit, offset), false);
+        public static string SyncPlayer(Country server, int stat, int limit, int offset) => String(Url.SyncPlayer(server, stat, limit, offset));
         /// <summary>
         /// 获取某个固定活动的URL
         /// </summary>
         /// <param name="data">编号</param>
         /// <returns></returns>
-        public static async Task<string> Event(int data) => await Get.String(Url.EventURL(data), false);
+        public static string Event(int data) => String(Url.EventURL(data));
         /// <summary>
         /// 获得某个固定编号卡池的数据
         /// </summary>
         /// <param name="data">编号</param>
         /// <returns></returns>
-        public static async Task<string> Gacha(int data) => await Get.String(Url.GachaURL(data), false);
+        public static string Gacha(int data) => String(Url.GachaURL(data));
         /// <summary>
         /// 获得某个固定的卡的数据
         /// </summary>
         /// <param name="data">编号</param>
         /// <returns></returns>
-        public static async Task<string> Cards(int data) => await Get.String(Url.CardsURL(data), false);
+        public static string Cards(int data) => String(Url.CardsURL(data));
         /// <summary>
         /// 获得某个固定角色的数据
         /// </summary>
         /// <param name="data">编号</param>
         /// <returns></returns>
-        public static async Task<string> Characters(int data) => await Get.String(Url.CharactersURL(data), false);
+        public static string Characters(int data) => String(Url.CharactersURL(data));
         /// <summary>
         /// 搜索某个服务器的某个固定玩家的数据
         /// </summary>
@@ -220,24 +221,35 @@ namespace Meow.Rinko.Core
         /// <param name="playerId">玩家id</param>
         /// <param name="mode">0 / 2 (fresh)</param>
         /// <returns></returns>
-        public static async Task<string> SearchPlayer(Country server, long playerId, int mode = 0) => await Get.String(Url.SearchPlayer(server, playerId, mode), false);
+        public static string SearchPlayer(Country server, long playerId, int mode = 0) => String(Url.SearchPlayer(server, playerId, mode));
         /// <summary>
         /// 获取服装列表(原始live2d)
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> CostumeList() => await Get.String("https://bestdori.com/api/costumes/all.5.json");
+        public static string CostumeList() => String("https://bestdori.com/api/costumes/all.5.json");
         /// <summary>
         /// 获得服装具体作用
         /// </summary>
         /// <param name="num">服装号</param>
         /// <returns></returns>
-        public static async Task<string> Costumes(int num) => await Get.String($"https://bestdori.com/api/costumes/{num}.json");
+        public static string Costumes(int num) => String($"https://bestdori.com/api/costumes/{num}.json");
         /// <summary>
         /// 获取具体区服的具体服装位
         /// </summary>
         /// <param name="datastring">服装名</param>
         /// <param name="c">具体区服 (默认日本服)</param>
         /// <returns></returns>
-        public static async Task<string> GetDataAssets(string datastring, Country c = Country.jp) => await Get.String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
+        public static string GetDataAssets(string datastring, Country c = Country.jp) => String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
+        static string String(string url)
+        {
+            var wc = new WebClient
+            {
+                Headers = new WebHeaderCollection() { 
+                    { "User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)" },
+                    { "Keep-Alive", "0"},
+                },
+            };
+            return wc.DownloadString(url);
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace l2dcmd
 {
     class Program
     {
-        static string help = 
+        static readonly string help = 
             "在使用前请检查您是否能连接BestDori.com \n" +
             "[check internet connection before using software]\n"+
             "------------------可用参数-------------------\n" +

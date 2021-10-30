@@ -6,6 +6,79 @@ using System.Collections.Generic;
 namespace Meow.Rinko.Core.Gets
 {
     /// <summary>
+    /// 时间函数库
+    /// </summary>
+    public class TimeX
+    {
+        /// <summary>
+        /// TimeStamp起始点
+        /// </summary>
+        public static readonly DateTime UnixTimeStampStart = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        /// <summary>
+        /// 转换时间戳到时间类
+        /// </summary>
+        public class TimeStampX
+        {
+            /// <summary>
+            /// 秒制时间戳转换时间类
+            /// </summary>
+            /// <param name="sec">秒制TimeStamp</param>
+            /// <returns></returns>
+            public static DateTime Second(long sec) =>
+                UnixTimeStampStart.AddSeconds(sec).ToLocalTime();
+            /// <summary>
+            /// 毫秒制时间戳转换时间类
+            /// </summary>
+            /// <param name="millisec">毫秒制时间戳</param>
+            /// <returns></returns>
+            public static DateTime MilliSecond(long millisec) =>
+                UnixTimeStampStart.AddMilliseconds(millisec).ToLocalTime();
+            /// <summary>
+            /// Ticks转换时间类
+            /// </summary>
+            /// <param name="value">Ticks值</param>
+            /// <returns></returns>
+            public static DateTime Ticks(long value) =>
+                TimeZoneInfo.ConvertTimeFromUtc(new DateTime(value),
+                TimeZoneInfo.Local);
+        }
+        /// <summary>
+        /// 转换时间类到时间戳
+        /// </summary>
+        public class DateTimeX
+        {
+            private readonly DateTime dateTime;
+            /// <summary>
+            /// 新建一个时间类辅助类
+            /// </summary>
+            /// <param name="dateTime">DateTime对象</param>
+            public DateTimeX(DateTime dateTime)
+            {
+                this.dateTime = dateTime;
+            }
+
+            /// <summary>
+            /// 时间类转换成秒制时间戳
+            /// </summary>
+            /// <returns></returns>
+            public long ToSecTimeStamp() =>
+                (long)(dateTime.ToUniversalTime() - UnixTimeStampStart).TotalSeconds;
+            /// <summary>
+            /// 时间类转换成毫秒制时间戳
+            /// </summary>
+            /// <returns></returns>
+            public long ToMiSecTimeStamp() =>
+                (long)(dateTime.ToUniversalTime() - UnixTimeStampStart).TotalMilliseconds;
+            /// <summary>
+            /// 时间类转换成固定字符串格式
+            /// </summary>
+            /// <param name="convertor">要转换的默认格式</param>
+            /// <returns></returns>
+            public string ToString(string convertor = "yyyy-MM-dd_hh-mm-ss") =>
+                dateTime.ToString(convertor);
+        }
+    }
+    /// <summary>
     /// 活动列表
     /// </summary>
     public class EventList
@@ -21,7 +94,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Baseevents().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.QEvent>>();
+                Data = JObject.Parse(Bases.Baseevents()).ToObject<Dictionary<int, Model.QEvent>>();
             }
             catch(Exception ex)
             {
@@ -35,8 +108,8 @@ namespace Meow.Rinko.Core.Gets
         /// <returns></returns>
         public (int[] inbound,int[] outbound) EventNow(Country c)
         {
-            var nts = new Util.Basic.TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
-            var ntsmax = new Util.Basic.TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var nts = new TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
+            var ntsmax = new TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
             var inbound = from a in Data 
                           where a.Value?.startAt?[(int)c] != null && 
                             long.Parse(a.Value?.startAt?[(int)c]??"0") < nts && 
@@ -65,7 +138,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Basegachas().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.QGacha>>();
+                Data = JObject.Parse(Bases.Basegachas()).ToObject<Dictionary<int, Model.QGacha>>();
             }
             catch (Exception ex)
             {
@@ -79,8 +152,8 @@ namespace Meow.Rinko.Core.Gets
         /// <returns></returns>
         public (Model.QGacha[] inbound, Model.QGacha[] outbound) GachaNow(Country c)
         {
-            var nts = new Util.Basic.TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
-            var ntsmax = new Util.Basic.TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var nts = new TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
+            var ntsmax = new TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
             var inbound = from a in Data
                           where a.Value?.publishedAt?[(int)c] != null &&
                             long.Parse(a.Value.publishedAt[(int)c] ?? "0") < nts &&
@@ -109,7 +182,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Basesongs().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.Song>>();
+                Data = JObject.Parse(Bases.Basesongs()).ToObject<Dictionary<int, Model.Song>>();
             }
             catch (Exception ex)
             {
@@ -133,7 +206,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Basecharacters().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.Character>>();
+                Data = JObject.Parse(Bases.Basecharacters()).ToObject<Dictionary<int, Model.Character>>();
             }
             catch (Exception ex)
             {
@@ -157,7 +230,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Basearchives().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.Archive>>();
+                Data = JObject.Parse(Bases.Basearchives()).ToObject<Dictionary<int, Model.Archive>>();
             }
             catch (Exception ex)
             {
@@ -181,7 +254,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Basenews().GetAwaiter().GetResult()).ToObject<Dictionary<int, Model.News>>();
+                Data = JObject.Parse(Bases.Basenews()).ToObject<Dictionary<int, Model.News>>();
             }
             catch (Exception ex)
             {
@@ -205,7 +278,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Baseallsongs().GetAwaiter().GetResult()).ToObject<Dictionary<int, Dictionary<int, Dictionary<double, double[]>>>>();
+                Data = JObject.Parse(Bases.Baseallsongs()).ToObject<Dictionary<int, Dictionary<int, Dictionary<double, double[]>>>>();
             }
             catch (Exception ex)
             {
@@ -230,7 +303,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Event(num).GetAwaiter().GetResult()).ToObject<Model.Event>();
+                Data = JObject.Parse(Bases.Event(num)).ToObject<Model.Event>();
             }
             catch (Exception ex)
             {
@@ -255,7 +328,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Gacha(num).GetAwaiter().GetResult()).ToObject<Model.Gacha>();
+                Data = JObject.Parse(Bases.Gacha(num)).ToObject<Model.Gacha>();
             }
             catch (Exception ex)
             {
@@ -280,7 +353,7 @@ namespace Meow.Rinko.Core.Gets
         {
             try
             {
-                Data = JObject.Parse(Bases.Cards(num).GetAwaiter().GetResult()).ToObject<Model.Card>();
+                Data = JObject.Parse(Bases.Cards(num)).ToObject<Model.Card>();
             }
             catch (Exception ex)
             {

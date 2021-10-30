@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace Meow.Rinko.Core.Live2d
         /// </summary>
         public Live2dList(Country c = Country.undefined)
         {
-            string k = Bases.CostumeList().GetAwaiter().GetResult();
+            string k = Bases.CostumeList();
             var puredata = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<int, Costume?>>(k);
             if (c == Country.undefined)
             {
@@ -190,7 +191,7 @@ namespace Meow.Rinko.Core.Live2d
         /// <param name="c">国别</param>
         public Live2dSingle(string name, Country c = Country.jp)
         {
-            string k = Bases.GetDataAssets(name, c).GetAwaiter().GetResult();
+            string k = Bases.GetDataAssets(name, c);
             JObject jo = JObject.Parse(k);
             Data = Newtonsoft.Json.JsonConvert.DeserializeObject<ConvertCostume>(jo?["Base"]?.ToString() ?? "") ?? new();
             for (int i = 0; i < Data.textures.Length; i++)
@@ -249,7 +250,7 @@ namespace Meow.Rinko.Core.Live2d
                 /// <param name="pathBase"></param>
                 /// <param name="c"></param>
                 /// <returns></returns>
-                public Task<(string f, Util.Network.HttpFiles FileStatus)> DownloadFileInto(string pathBase,Country c = Country.jp)
+                public Task<(string f, HttpFiles FileStatus)> DownloadFileInto(string pathBase,Country c = Country.jp)
                 {
                     var t = Task.Factory.StartNew(() =>
                     {
@@ -257,14 +258,14 @@ namespace Meow.Rinko.Core.Live2d
                         var p = Path.Combine(pathBase, bundleName, f);
                         try
                         {
-                            var (_, FileStatus, _) = Util.Network.Http.Get.File($"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",p);
+                            var (_, FileStatus, _) = File($"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",p);
                             return (f, FileStatus);
                         }
                         catch(Exception ex)
                         {
                             Console.WriteLine($"{f} :: {ex}");
                         }
-                        return (f, Util.Network.HttpFiles.PROGRESS_FAIL);
+                        return (f, HttpFiles.PROGRESS_FAIL);
 
                     });
                     return t;
@@ -292,10 +293,10 @@ namespace Meow.Rinko.Core.Live2d
             /// <param name="p"></param>
             /// <param name="c"></param>
             /// <returns></returns>
-            public async Task<List<(string f, Util.Network.HttpFiles FileStatus)>> DownloadModel(string p, Country c = Country.jp) 
+            public async Task<List<(string f, HttpFiles FileStatus)>> DownloadModel(string p, Country c = Country.jp) 
                 => await await Task.Factory.StartNew(async () =>
                     {
-                        List<(string f, Util.Network.HttpFiles FileStatus)> l = new();
+                        List<(string f, HttpFiles FileStatus)> l = new();
                         l.Add(await model.DownloadFileInto(p, c));
                         l.Add(await physics.DownloadFileInto(p, c));
                         l.Add(await transition.DownloadFileInto(p, c));
@@ -309,6 +310,53 @@ namespace Meow.Rinko.Core.Live2d
                         }
                         return l;
                     });
+        }
+        public enum HttpFiles
+        {
+            /// <summary>
+            /// 下载成功
+            /// </summary>
+            Success_Download = 0,
+            /// <summary>
+            /// 下载失败
+            /// </summary>
+            Fail_Download = 1,
+            /// <summary>
+            /// 已存在
+            /// </summary>
+            Already_Exist = 2,
+            /// <summary>
+            /// 程序出错
+            /// </summary>
+            PROGRESS_FAIL = 3
+        }
+        /// <summary>
+        /// 获取文件
+        /// </summary>
+        /// <param name="url">网络地址</param>
+        /// <param name="path">本地地址</param>
+        /// <returns></returns>
+        public static (bool Status, HttpFiles FileStatus, string ErrorString) File(string url, string path)
+        {
+            if (System.IO.File.Exists(Path.GetFullPath(path)))
+            {
+                return (true, HttpFiles.Already_Exist, "");
+            }
+            else
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+                try
+                {
+                    using var wc = new WebClient();
+                    wc.Headers.Add("connection", "close");
+                    wc.DownloadFile(url, path);
+                    return (true, HttpFiles.Success_Download, "");
+                }
+                catch (Exception ex)
+                {
+                    return (false, HttpFiles.PROGRESS_FAIL, ex.Message);
+                }
+            }
         }
     }
 }
