@@ -28,10 +28,10 @@ namespace ycxcore
         /// 服务器容纳的榜线高
         /// </summary>
         public static int[][] Tier = {
-            new[] {100,1000,2000 }, //jp
-            new[] {100,1000,2000 }, //en
-            new[] {100,1000,2000 }, //tw
-            new[] {100,1000,2000 }, //cn
+            new[] {100,500,1000,2000,5000,10000 }, //jp
+            new[] {100,1000,2500 }, //en
+            new[] {100,500 }, //tw
+            new[] {50,100,300,500,1000,2000 }, //cn
             new[] {100 }};//kr
         /// <summary>
         /// 最小泰勒展开阶
@@ -61,6 +61,7 @@ namespace ycxcore
             {
                 Directory.CreateDirectory(Path.Combine(GeneralStoragePath, $"PredictNow"));
             }
+            File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", "tier.json"), JsonConvert.SerializeObject(Tier));
             if (args.Length > 0)
             {
                 if(args[0] == "gm")
@@ -80,26 +81,9 @@ namespace ycxcore
             {
                 try
                 {
-                    Console.WriteLine("[BDCP] -- FETCHING BESTDORI DATA --");
-                    for (int i = 0; i < 5; i++)
-                    {
-                        var s = new Meow.Rinko.Core.Gets.EventList().EventNow((Country)i).inbound;
-                        if (s.Length > 0)
-                        {
-                            eventNow[i] = s[0];
-                            foreach (var r in Tier[i])
-                            {
-                                RenderingBlock((Country)i, s[0], r, true);
-                            }
-                            Console.WriteLine($"[BDCP] -- SERVER {(Country)i} EVENT {eventNow[i]} RENDERDING COMPLETE --");
-                        }
-                        else
-                        {
-                            eventNow[i] = null;
-                            Console.WriteLine($"[BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
-                        }
-                    }
-                    Console.WriteLine("[BDCP] -- FETCHING EVENTNOW COMPLETE --");
+                    _doGetBDData();
+                    _doFetch();
+                    _doPredict();
                 }
                 catch (Exception ex)
                 {
@@ -109,6 +93,78 @@ namespace ycxcore
                 Thread.Sleep(1000 * 60 * 30);
             }
         }
+        public static void _doGetBDData()
+        {
+            Console.WriteLine("[BDCP] -- FETCHING BESTDORI DATA --");
+            for (int i = 0; i < 5; i++)
+            {
+                var s = new Meow.Rinko.Core.Gets.EventList().EventNow((Country)i).inbound;
+                if (s.Length > 0)
+                {
+                    eventNow[i] = s[0];
+                    Console.WriteLine($"[BDCP] -- SERVER {(Country)i} ON EVENT {eventNow[i]} --");
+                }
+                else
+                {
+                    eventNow[i] = null;
+                    Console.WriteLine($"[BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
+                }
+            }
+            Console.WriteLine("[BDCP] -- FETCHING EVENTNOW COMPLETE --");
+        }
+        public static void _doFetch()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                
+                if (eventNow[i] != null)
+                {
+                    foreach (var r in Tier[i])
+                    {
+                        RenderingBlock((Country)i, eventNow[i] ?? 0, r, true);
+                    }
+                    Console.WriteLine($"[BDCP] -- RENDER COMP {(Country)i} {eventNow[i]} --");
+                }
+                else
+                {
+                    Console.WriteLine($"[BDCP] -- NO EVENT ON {(Country)i} {eventNow[i]} --");
+                }
+            }
+        }
+        public static void _doPredict()
+        {
+            foreach (var n in new int[] { 0, 1, 2, 3, 4 })
+            {
+                for (int j = 0; j < Tier[n].Length; j++)
+                {
+                    var tier = Tier[n][j];
+                    try
+                    {
+                        var k = new SM_Now(n, tier, (eventNow[n] != null)).Predict();
+                        File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{n}-{tier}.now.json"), JsonConvert.SerializeObject(k));
+                        Console.WriteLine($"[GENT] |COM| {n} {tier} COMPLETE");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[GENT] |-ER| {n} {tier} ERR : {ex}");
+                    }
+                }
+            }
+        }
+        public static void _doPredict(int country, int lineheight)
+        {
+            try
+            {
+                var k = new SM_Now(country, lineheight, (eventNow[country] != null)).Predict();
+                File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{country}-{lineheight}.now.json"), JsonConvert.SerializeObject(k));
+                Console.WriteLine($"[GENT] |COM| {country} {lineheight} COMPLETE");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[GENT] |-ER| {country} {lineheight} ERR : {ex}");
+            }
+        }
+
         public class SM_Now
         {
             /// <summary>
@@ -124,9 +180,17 @@ namespace ycxcore
             /// </summary>
             public int Tier;
             /// <summary>
+            /// 是否有活动
+            /// </summary>
+            public bool IsOnEvent;
+            /// <summary>
             /// 当前榜线
             /// </summary>
             public Tracker[] TrackerNow;
+            /// <summary>
+            /// 线性回归抬升速率
+            /// </summary>
+            public double Accdy;
 
             /// <summary>
             /// SMR模型预测
@@ -148,10 +212,6 @@ namespace ycxcore
             /// 抬升高度
             /// </summary>
             public double SMRdy;
-            /// <summary>
-            /// 抬升速率
-            /// </summary>
-            public double SMRaccdy;
             
             /// <summary>
             /// 斜率回归模型
@@ -173,13 +233,12 @@ namespace ycxcore
             /// 线性回归抬升高度
             /// </summary>
             public double LRdy;
-            /// <summary>
-            /// 线性回归抬升速率
-            /// </summary>
-            public double LRaccdy;
+            
 
-            public SM_Now(int country,int tier)
+            public SM_Now(int country,int tier, bool _isOn)
             {
+                IsOnEvent = _isOn;
+                Console.WriteLine($"[PMCP] -{country},{tier},{_isOn}");
                 PresentTime = DateTime.Now;
                 Country = country;
                 Tier = tier;
@@ -189,18 +248,27 @@ namespace ycxcore
                     SMRModel = a.avg;
                     SMROrder = a.order;
                 }
-                TrackerNow = GetRenderedBlock((Country)country, tier).tracker;
+                TrackerNow = GetRenderedBlock((Country)country, tier)?.tracker;
             }
             public SM_Now Predict()
             {
                 var tn = TrackerNow;
                 List<double> x = new();
                 List<double> y = new();
-                foreach (var i in tn)
+
+                if (tn != null)
                 {
-                    x.Add(i.PCT * 100);
-                    y.Add(i.Score);
+                    foreach (var i in tn)
+                    {
+                        x.Add(i.PCT * 100);
+                        y.Add(i.Score);
+                    }
+                    if (TrackerNow.Length > 0 && SMRModel != null)
+                    {
+                        SMRdy = f(TrackerNow[^1].PCT * 100, SMRModel) - TrackerNow[^1].Score;
+                    }
                 }
+
                 if (x.Count > 2)
                 {
                     LRenable = true;
@@ -209,21 +277,18 @@ namespace ycxcore
                     LRSlope = b;
                     LRpredict = yab(a, b);
                     LRdy = (a + b * TrackerNow[^1].PCT * 100) - TrackerNow[^1].PCT;
-                    LRaccdy = (TrackerNow[^1].Score - TrackerNow[^2].Score) / (TrackerNow[^1].PCT * 100 - TrackerNow[^2].PCT * 100);
-                }//斜率判断法
-                if (x.Count > _minOrder)
+                    Accdy = (TrackerNow[^1].Score - TrackerNow[^2].Score) / (TrackerNow[^1].PCT * 100 - TrackerNow[^2].PCT * 100);
+                }
+                if (SMRModel != null)
                 {
                     SMRenable = true;
                     SMRPredict = new double[101, 2];
-                    foreach (var xi in Enumerable.Range(0,101))
+                    foreach (var xi in Enumerable.Range(0, 101))
                     {
                         SMRPredict[xi, 0] = xi;
                         SMRPredict[xi, 1] = f(xi, SMRModel);
                     }
-                    SMRdy = f(TrackerNow[^1].PCT * 100, SMRModel) - TrackerNow[^1].Score;
-                    SMRaccdy = (TrackerNow[^1].Score - TrackerNow[^2].Score) / (TrackerNow[^1].PCT * 100 - TrackerNow[^2].PCT * 100);
                 }
-
                 return this;
             }
         }
@@ -252,39 +317,6 @@ namespace ycxcore
             }
             return xy;
         });
-        public static void _doPredict()
-        {
-            foreach (var n in new int[] { 0, 1, 2, 3, 4 })
-            {
-                for (int j = 0; j < Program.Tier[n].Length; j++)
-                {
-                    var tier = Tier[n][j];
-                    try
-                    {
-                        var k = new SM_Now(n, tier).Predict();
-                        File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{n}-{tier}.now.json"), JsonConvert.SerializeObject(k));
-                        Console.WriteLine($"[GENT] |COM| {n} {tier} COMPLETE");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"[GENT] |-ER| {n} {tier} ERR : {ex}");
-                    }
-                }
-            }
-        }
-        public static void _doPredict(int country,int lineheight)
-        {
-            try
-            {
-                var k = new SM_Now(country, lineheight).Predict();
-                File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{country}-{lineheight}.now.json"), JsonConvert.SerializeObject(k));
-                Console.WriteLine($"[GENT] |COM| {country} {lineheight} COMPLETE");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[GENT] |-ER| {country} {lineheight} ERR : {ex}");
-            }
-        }
         /// <summary>
         /// 一级存储结构
         /// </summary>
@@ -351,10 +383,6 @@ namespace ycxcore
                     {
                         File.WriteAllText(p1, ss);
                         Console.WriteLine($"[RNDR] |-U-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
-                        if (_now)
-                        {
-                            _doPredict((int)c, lineheight);
-                        }
                     }
                     else
                     {
@@ -366,10 +394,6 @@ namespace ycxcore
                 {
                     File.WriteAllText(p1, ss);
                     Console.WriteLine($"[RNDR] |-C-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
-                    if (_now)
-                    {
-                        _doPredict((int)c, lineheight);
-                    }
                     return true;
                 }
             }
@@ -407,12 +431,12 @@ namespace ycxcore
         /// <param name="eventnum">活动号</param>
         /// <param name="lineheight">榜线高</param>
         /// <returns></returns>
-        public static FileTracker GetRenderedBlock(Country c,int eventnum, int lineheight)
+        public static FileTracker GetRenderedBlock(Country c,int eventnum, int lineheight, bool _fromFile = false)
         {
             try
             {
                 var p1 = Path.Combine(GeneralStoragePath, $"Trackers", $"{(int)c}-{eventnum}-{lineheight}.json");
-                if(RenderingBlock(c, eventnum, lineheight, false))
+                if( _fromFile || RenderingBlock(c, eventnum, lineheight, false))
                 {
                     var fr = File.ReadAllText(p1);
                     return JObject.Parse(fr).ToObject<FileTracker>();

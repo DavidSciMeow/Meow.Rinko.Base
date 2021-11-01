@@ -75,12 +75,15 @@ namespace ycxcore
                 for (int i = 0; i < data.Length; i++)
                 {
                     var d = data[i];
-                    if (d.Any())
+                    if (d != null)
                     {
-                        x.Add(i);
-                        Max.Add(d.Max());
-                        Avg.Add(d.Average());
-                        Min.Add(d.Min());
+                        if (d.Any())
+                        {
+                            x.Add(i);
+                            Max.Add(d.Max());
+                            Avg.Add(d.Average());
+                            Min.Add(d.Min());
+                        }
                     }
                 }
                 if (x.Any())
@@ -103,20 +106,18 @@ namespace ycxcore
         /// </summary>
         public class InstallVRT
         {
-            public List<VRT> Data = new();
-            public InstallVRT()
+            public static VRT[][] Data = new VRT[5][];
+            public static void init()
             {
                 foreach (var n in new int[] { 0, 1, 2, 3, 4 })
                 {
+                    Data[n] = new VRT[Program.Tier[n].Length];
                     for (int j = 0; j < Program.Tier[n].Length; j++)
                     {
-                        Data.Add(new VRT() { country = n, tiernum = Program.Tier[n][j] });
+                        Data[n][j] = new VRT() { country = n, tiernum = Program.Tier[n][j] };
+                        Data[n][j]._init();
                     }
                 }
-            }
-            public VRT getVRT(int country, int tiernum)
-            {
-                return (from a in Data where a.country == country && a.tiernum == tiernum select a).First();
             }
         }
         /// <summary>
@@ -126,92 +127,51 @@ namespace ycxcore
         {
             ModelStatus = true;
             var dts = DateTime.Now;
-            var GeneralData = GetModel();
-            if ((GeneralData == null) || _forceCheckModel)
+            InstallVRT.init();
+            var edata = new Meow.Rinko.Core.Gets.EventList().Data; // 获取所有活动
+            foreach (var n in new int[] { 0, 1, 2, 3, 4 })
             {
-                var XGeneralData = new InstallVRT();
-                var edata = new Meow.Rinko.Core.Gets.EventList().Data; // 获取所有活动
-                Queue<Task> MGT = new();
-                foreach (var n in new int[] { 0, 1, 2, 3, 4 })
+                var x = from a in edata orderby a.Value.endAt[n] where a.Value.endAt[n] != null select a.Key;//获取当前服务器所有活动
+                foreach (var i in x)//每个活动
                 {
-                    var x = from a in edata orderby a.Value.endAt[n] where a.Value.endAt[n] != null select a.Key;//获取当前服务器所有活动
-                    foreach (var i in x)//每个活动
+                    for (int j = 0; j < Program.Tier[n].Length; j++)
                     {
-                        for (int j = 0; j < Program.Tier[n].Length; j++)
+                        var ti = Program.Tier[n][j];
+                        var d = Program.GetRenderedBlock((Country)n, i, ti, !_forceCheckModel); //获取榜线
+                        if (d != null)
                         {
-                            var ti = Program.Tier[n][j];
-                            var t = new Task(() =>
+                            if (d.tracker != null && d.tracker.Length > 0)
                             {
-                                var d = Program.GetRenderedBlock((Country)n, i, ti); //获取榜线
-                                if (d != null)
+                                InstallVRT.Data[n][j].data[0].Add(0);
+                                foreach (var dx in d.tracker)
                                 {
-                                    foreach (var dx in d.tracker)
+                                    if (dx.PCT < 0)
                                     {
-                                        if (dx.PCT < 0)
-                                        {
-                                            continue;
-                                        }
-                                        var vrt = XGeneralData.getVRT(n, ti);
-                                        if (vrt.data == null)
-                                        {
-                                            vrt._init();
-                                        }
-                                        vrt.data[(int)Math.Floor((dx.PCT > 1 ? 1 : dx.PCT) * 100)].Add(dx.Score);
-                                        //下归类右榜线位置(统一小边看齐)
+                                        continue;
                                     }
+                                    InstallVRT.Data[n][j].data[(int)Math.Ceiling((dx.PCT > 1 ? 1 : dx.PCT) * 100)].Add(dx.Score);
+                                    //下归类右榜线位置(统一小边看齐)
                                 }
-                            });
-                            MGT.Enqueue(t);//加入任务族
+                            }
                         }
-                    }
-                } //设定任务
-                Console.WriteLine($"[PMCP] |TSK| TASK GENERATION COMPLETE--");
-                var inlinetask = Program.Tier.Length;
-                while (MGT.Any())
-                {
-                    Console.WriteLine($"[PMCP] |TSK| {MGT.Count}--");
-                    List<Task> outbound = new();
-                    for (int i = 0; i < inlinetask; i++)
-                    {
-                        if (MGT.Count > 0)
+                        else
                         {
-                            var tk = MGT.Dequeue();
-                            tk.Start();
-                            outbound.Add(tk);
+                            Console.WriteLine($"[PMCP] |TSK| {(Country)n}-{i}-{ti} Event null");
                         }
                     }
-                    Task.WaitAll(outbound.ToArray());
-                    Task.Delay(500).Wait();
-                }//执行任务
-                var p1 = Path.Combine(Program.GeneralStoragePath, $"Analyze", "generalDatabase.rinkomodel");//模型存取位置
-                File.WriteAllText(p1, JsonConvert.SerializeObject(XGeneralData));
+                }
             }
-            foreach (var i in GeneralData)
+            Console.WriteLine($"[PMCP] |TSK| TASK GENERATION COMPLETE--");
+            foreach (var n in new int[] { 0, 1, 2, 3, 4 })
             {
-                i.CalModel();
-            }//计算模型
+                foreach (var i in InstallVRT.Data[n])
+                {
+                    i.CalModel();
+                }//计算模型
+            }
             var dte = DateTime.Now;
             Console.WriteLine($"[PMCP] |TSK| Data Fetching/Generate Complete in {(dte - dts).TotalSeconds} Sec");
             ModelStatus = false;
-        }
-        /// <summary>
-        /// 获取所有模型
-        /// </summary>
-        /// <returns></returns>
-        public static List<VRT> GetModel()
-        {
-            var p1 = Path.Combine(Program.GeneralStoragePath, $"Analyze", "generalDatabase.rinkomodel");//模型存取位置
-            if (File.Exists(p1))
-            {
-                var fss = File.ReadAllText(p1);
-                var obj = JObject.Parse(fss);
-                var objx = JsonConvert.DeserializeObject<List<VRT>>(obj["Data"].ToString());
-                return objx;
-            }
-            else
-            {
-                return null;
-            }
         }
         /// <summary>
         /// 获取模型
@@ -229,7 +189,7 @@ namespace ycxcore
             }
             else
             {
-                Console.WriteLine($"[MAIN] Model {country}-{tiernum} unGenerate, use /gm or /gm force, to Generate model");
+                Console.WriteLine($"[MAIN] Model {country}-{tiernum} unGenerate, use /gm or /gmf, to Generate model");
                 return null;
             }
         }

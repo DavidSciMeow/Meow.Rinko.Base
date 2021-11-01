@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ycxcore": {
+      "commandName": "Project",
+      "commandLineArgs": "gm"
+    }
+  }
+}
