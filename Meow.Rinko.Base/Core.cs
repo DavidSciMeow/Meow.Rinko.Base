@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.Net;
 
 namespace Meow.Rinko.Core
 {
@@ -77,7 +73,6 @@ namespace Meow.Rinko.Core
         /// 所有标题图
         /// </summary>
         public readonly static string basealltitle = "https://bestdori.com/api/misc/titles.5.json";
-
         /// <summary>
         /// 获取某区服的漫画
         /// </summary>
