@@ -38,6 +38,7 @@ namespace ycxcore
         /// </summary>
         public static int _minOrder = 4;
 
+
         /// <summary>
         /// 主程序注入
         /// </summary>
@@ -165,12 +166,21 @@ namespace ycxcore
             }
         }
 
+
         public class SM_Now
         {
             /// <summary>
             /// 当前预测生成时间
             /// </summary>
             public DateTime PresentTime;
+            /// <summary>
+            /// 当前活动开始时间
+            /// </summary>
+            public long? EventStartTime;
+            /// <summary>
+            /// 当前活动结束时间
+            /// </summary>
+            public long? EventEndTime;
             /// <summary>
             /// 区服
             /// </summary>
@@ -248,7 +258,10 @@ namespace ycxcore
                     SMRModel = a.avg;
                     SMROrder = a.order;
                 }
-                TrackerNow = GetRenderedBlock((Country)country, tier)?.tracker;
+                var dss = GetRenderedBlock((Country)country, tier);
+                TrackerNow = dss?.tracker;
+                EventStartTime = dss?.eventDetail.startAt;
+                EventEndTime = dss?.eventDetail.endAt;
             }
             public SM_Now Predict()
             {
@@ -347,6 +360,8 @@ namespace ycxcore
             /// </summary>
             public Tracker[] tracker = null;
         }
+
+
         /// <summary>
         /// "渲染"一个完整的榜线格
         /// </summary>
