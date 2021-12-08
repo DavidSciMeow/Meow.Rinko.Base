@@ -240,8 +240,8 @@ namespace Meow.Rinko.Core
             var wc = new WebClient
             {
                 Headers = new WebHeaderCollection() { 
-                    { "User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)" },
-                    { "Keep-Alive", "0"},
+                    { "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" },
+                    { "upgrade-insecure-requests", "1"},
                 },
             };
             return wc.DownloadString(url);
