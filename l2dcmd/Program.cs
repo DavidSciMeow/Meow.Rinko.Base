@@ -156,7 +156,7 @@ namespace l2dcmd
             int num = 0;
             int numx = 0;
             Console.WriteLine($"下载路径 [PATH] : {args[^1]}");
-            Task.Factory.StartNew(async () =>
+            Task.Factory.StartNew(() =>
             {
                 Console.WriteLine("正在获取最新列表 [Getting Newest List()]");
                 var j = new Meow.Rinko.Core.Live2d.Live2dList();
@@ -174,7 +174,7 @@ namespace l2dcmd
                     {
                         try
                         {
-                            var ax = await x.Value.getLive2dPack().Data.DownloadModel(args[^1]);
+                            var ax = x.Value.getLive2dPack().Data.DownloadModel(args[^1]).GetAwaiter().GetResult();
                             ax.ForEach((k) =>
                             {
                                 if (verbose)
