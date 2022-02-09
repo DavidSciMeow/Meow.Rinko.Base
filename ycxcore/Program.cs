@@ -37,7 +37,7 @@ namespace ycxcore
         /// 最小泰勒展开阶
         /// </summary>
         public static int _minOrder = 4;
-
+        public static int retry_timing = 1000 * 5;
 
         /// <summary>
         /// 主程序注入
@@ -80,16 +80,9 @@ namespace ycxcore
             }
             while (true)
             {
-                try
-                {
-                    _doGetBDData();
-                    _doFetch();
-                    _doPredict();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"[MAIN] err : {ex.Message}");
-                }
+                _doGetBDData();
+                _doFetch();
+                _doPredict();
                 Console.WriteLine("[BDCP] -- FETCHING Next 30 Min --");
                 Thread.Sleep(1000 * 60 * 30);
             }
@@ -99,17 +92,28 @@ namespace ycxcore
             Console.WriteLine("[BDCP] -- FETCHING BESTDORI DATA --");
             for (int i = 0; i < 5; i++)
             {
-                var s = new Meow.Rinko.Core.Gets.EventList().EventNow((Country)i).inbound;
-                if (s.Length > 0)
+                try
                 {
-                    eventNow[i] = s[0];
-                    Console.WriteLine($"[BDCP] -- SERVER {(Country)i} ON EVENT {eventNow[i]} --");
+                    var s = new Meow.Rinko.Core.Gets.EventList().EventNow((Country)i).inbound;
+                    if (s.Length > 0)
+                    {
+                        eventNow[i] = s[0];
+                        Console.WriteLine($"[BDCP] -- SERVER {(Country)i} ON EVENT {eventNow[i]} --");
+                    }
+                    else
+                    {
+                        eventNow[i] = null;
+                        Console.WriteLine($"[BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    eventNow[i] = null;
-                    Console.WriteLine($"[BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
+                    Console.WriteLine($"[MAIN.GetBDData] err : {ex.Message}");
+                    Console.WriteLine($"[MAIN.GetBDData] Retrying in {retry_timing/1000} sec ");
+                    Thread.Sleep(retry_timing);
+                    continue;
                 }
+
             }
             Console.WriteLine("[BDCP] -- FETCHING EVENTNOW COMPLETE --");
         }
@@ -117,18 +121,33 @@ namespace ycxcore
         {
             for (int i = 0; i < 5; i++)
             {
-                
-                if (eventNow[i] != null)
+                while (true)
                 {
-                    foreach (var r in Tier[i])
+                    try
                     {
-                        RenderingBlock((Country)i, eventNow[i] ?? 0, r, true);
+                        if (eventNow[i] != null)
+                        {
+                            foreach (var r in Tier[i])
+                            {
+                                RenderingBlock((Country)i, eventNow[i] ?? 0, r, true);
+                            }
+                            Console.WriteLine($"[BDCP] -- RENDER COMP {(Country)i} {eventNow[i]} --");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[BDCP] -- NO EVENT ON {(Country)i} {eventNow[i]} --");
+                            break;
+                        }
                     }
-                    Console.WriteLine($"[BDCP] -- RENDER COMP {(Country)i} {eventNow[i]} --");
-                }
-                else
-                {
-                    Console.WriteLine($"[BDCP] -- NO EVENT ON {(Country)i} {eventNow[i]} --");
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine($"[MAIN.Fetch] err : {ex.Message}");
+                        Console.WriteLine($"[MAIN.GetBDData] Retrying in {retry_timing / 1000} sec ");
+                        Thread.Sleep(retry_timing);
+                        continue;
+                    }
+                    
                 }
             }
         }
@@ -139,15 +158,22 @@ namespace ycxcore
                 for (int j = 0; j < Tier[n].Length; j++)
                 {
                     var tier = Tier[n][j];
-                    try
+                    while (true)
                     {
-                        var k = new SM_Now(n, tier, (eventNow[n] != null)).Predict();
-                        File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{n}-{tier}.now.json"), JsonConvert.SerializeObject(k));
-                        Console.WriteLine($"[GENT] |COM| {n} {tier} COMPLETE");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"[GENT] |-ER| {n} {tier} ERR : {ex}");
+                        try
+                        {
+                            var k = new SM_Now(n, tier, (eventNow[n] != null)).Predict();
+                            File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{n}-{tier}.now.json"), JsonConvert.SerializeObject(k));
+                            Console.WriteLine($"[GENT] |COM| {n} {tier} COMPLETE");
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"[GENT] |-ER| {n} {tier} ERR : {ex}");
+                            Console.WriteLine($"[MAIN.GetBDData] Retrying in {retry_timing / 1000} sec ");
+                            Thread.Sleep(retry_timing);
+                            continue;
+                        }
                     }
                 }
             }
