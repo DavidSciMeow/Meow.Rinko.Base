@@ -165,8 +165,6 @@ namespace ycxcore
                 Console.WriteLine($"[GENT] |-ER| {country} {lineheight} ERR : {ex}");
             }
         }
-
-
         public class SM_Now
         {
             /// <summary>
@@ -360,8 +358,6 @@ namespace ycxcore
             /// </summary>
             public Tracker[] tracker = null;
         }
-
-
         /// <summary>
         /// "渲染"一个完整的榜线格
         /// </summary>
