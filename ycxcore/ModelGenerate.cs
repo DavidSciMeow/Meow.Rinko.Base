@@ -156,12 +156,12 @@ namespace ycxcore
                         }
                         else
                         {
-                            Console.WriteLine($"[PMCP] |TSK| {(Country)n}-{i}-{ti} Event null");
+                            Console.WriteLine($"{DateTime.Now} [PMCP] |TSK| {(Country)n}-{i}-{ti} Event null");
                         }
                     }
                 }
             }
-            Console.WriteLine($"[PMCP] |TSK| TASK GENERATION COMPLETE--");
+            Console.WriteLine($"{DateTime.Now} [PMCP] |TSK| TASK GENERATION COMPLETE--");
             foreach (var n in new int[] { 0, 1, 2, 3, 4 })
             {
                 foreach (var i in InstallVRT.Data[n])
@@ -170,7 +170,7 @@ namespace ycxcore
                 }//计算模型
             }
             var dte = DateTime.Now;
-            Console.WriteLine($"[PMCP] |TSK| Data Fetching/Generate Complete in {(dte - dts).TotalSeconds} Sec");
+            Console.WriteLine($"{DateTime.Now} [PMCP] |TSK| Data Fetching/Generate Complete in {(dte - dts).TotalSeconds} Sec");
             ModelStatus = false;
         }
         /// <summary>
@@ -189,7 +189,7 @@ namespace ycxcore
             }
             else
             {
-                Console.WriteLine($"[MAIN] Model {country}-{tiernum} unGenerate, use /gm or /gmf, to Generate model");
+                Console.WriteLine($"{DateTime.Now} [MAIN] Model {country}-{tiernum} unGenerate, use /gm or /gmf, to Generate model");
                 return null;
             }
         }

@@ -83,13 +83,13 @@ namespace ycxcore
                 _doGetBDData();
                 _doFetch();
                 _doPredict();
-                Console.WriteLine("[BDCP] -- FETCHING Next 30 Min --");
+                Console.WriteLine($"{DateTime.Now} [BDCP] -- FETCHING Next 30 Min --");
                 Thread.Sleep(1000 * 60 * 30);
             }
         }
         public static void _doGetBDData()
         {
-            Console.WriteLine("[BDCP] -- FETCHING BESTDORI DATA --");
+            //Console.WriteLine($"{DateTime.Now} [BDCP] -- FETCHING BESTDORI DATA --");
             for (int i = 0; i < 5; i++)
             {
                 try
@@ -98,24 +98,24 @@ namespace ycxcore
                     if (s.Length > 0)
                     {
                         eventNow[i] = s[0];
-                        Console.WriteLine($"[BDCP] -- SERVER {(Country)i} ON EVENT {eventNow[i]} --");
+                        //Console.WriteLine($"{DateTime.Now} [BDCP] -- SERVER {(Country)i} ON EVENT {eventNow[i]} --");
                     }
                     else
                     {
                         eventNow[i] = null;
-                        Console.WriteLine($"[BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
+                        //Console.WriteLine($"{DateTime.Now} [BDCP] -- SERVER {(Country)i} NOW DONT HAVE EVENT ONGOING --");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"[MAIN.GetBDData] err : {ex.Message}");
-                    Console.WriteLine($"[MAIN.GetBDData] Retrying in {retry_timing/1000} sec ");
+                    Console.WriteLine($"{DateTime.Now} [MAIN.GetBDData] err : {ex.Message}");
+                    Console.WriteLine($"{DateTime.Now} [MAIN.GetBDData] Retrying in {retry_timing/1000} sec ");
                     Thread.Sleep(retry_timing);
                     continue;
                 }
 
             }
-            Console.WriteLine("[BDCP] -- FETCHING EVENTNOW COMPLETE --");
+            //Console.WriteLine($"{DateTime.Now} [BDCP] -- FETCHING EVENTNOW COMPLETE --");
         }
         public static void _doFetch()
         {
@@ -131,12 +131,12 @@ namespace ycxcore
                             {
                                 RenderingBlock((Country)i, eventNow[i] ?? 0, r, true);
                             }
-                            Console.WriteLine($"[BDCP] -- RENDER COMP {(Country)i} {eventNow[i]} --");
+                            //Console.WriteLine($"{DateTime.Now} [BDCP] -- RENDER COMP {(Country)i} {eventNow[i]} --");
                             break;
                         }
                         else
                         {
-                            Console.WriteLine($"[BDCP] -- NO EVENT ON {(Country)i} {eventNow[i]} --");
+                            //Console.WriteLine($"{DateTime.Now} [BDCP] -- NO EVENT ON {(Country)i} {eventNow[i]} --");
                             break;
                         }
                     }
@@ -164,13 +164,13 @@ namespace ycxcore
                         {
                             var k = new SM_Now(n, tier, (eventNow[n] != null)).Predict();
                             File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{n}-{tier}.now.json"), JsonConvert.SerializeObject(k));
-                            Console.WriteLine($"[GENT] |COM| {n} {tier} COMPLETE");
+                            //Console.WriteLine($"{DateTime.Now} [GENT] |COM| {n} {tier} COMPLETE");
                             break;
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"[GENT] |-ER| {n} {tier} ERR : {ex}");
-                            Console.WriteLine($"[MAIN.GetBDData] Retrying in {retry_timing / 1000} sec ");
+                            Console.WriteLine($"{DateTime.Now} [GENT] |-ER| {n} {tier} ERR : {ex}");
+                            Console.WriteLine($"{DateTime.Now} [MAIN.GetBDData] Retrying in {retry_timing / 1000} sec ");
                             Thread.Sleep(retry_timing);
                             continue;
                         }
@@ -184,11 +184,11 @@ namespace ycxcore
             {
                 var k = new SM_Now(country, lineheight, (eventNow[country] != null)).Predict();
                 File.WriteAllText(Path.Combine(GeneralStoragePath, $"PredictNow", $"{country}-{lineheight}.now.json"), JsonConvert.SerializeObject(k));
-                Console.WriteLine($"[GENT] |COM| {country} {lineheight} COMPLETE");
+                Console.WriteLine($"{DateTime.Now} [GENT] |COM| {country} {lineheight} COMPLETE");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[GENT] |-ER| {country} {lineheight} ERR : {ex}");
+                Console.WriteLine($"{DateTime.Now} [GENT] |-ER| {country} {lineheight} ERR : {ex}");
             }
         }
         public class SM_Now
@@ -419,24 +419,24 @@ namespace ycxcore
                     if (!str.Equals(ss))
                     {
                         File.WriteAllText(p1, ss);
-                        Console.WriteLine($"[RNDR] |-U-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
+                        //Console.WriteLine($"{DateTime.Now} [RNDR] |-U-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
                     }
                     else
                     {
-                        Console.WriteLine($"[RNDR] |-E-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
+                        //Console.WriteLine($"{DateTime.Now} [RNDR] |-E-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
                     }
                     return true;
                 }
                 else
                 {
                     File.WriteAllText(p1, ss);
-                    Console.WriteLine($"[RNDR] |-C-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
+                    //Console.WriteLine($"{DateTime.Now} [RNDR] |-C-| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight}");
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[RNDR] |-ER| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight} : {ex.Message}--");
+                Console.WriteLine($"{DateTime.Now} [RNDR] |-ER| {(int)c}-{(_now ? "" : $"{eventnum}-")}{lineheight} : {ex.Message}--");
                 return false;
             }
         }
@@ -457,7 +457,7 @@ namespace ycxcore
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[GNTK] --- Get Tracker RENDER ERR {c},{lineheight} \n :{ex.Message}--");
+                Console.WriteLine($"{DateTime.Now} [GNTK] --- Get Tracker RENDER ERR {c},{lineheight} \n :{ex.Message}--");
                 return null;
             }
         }
@@ -480,13 +480,13 @@ namespace ycxcore
                 }
                 else
                 {
-                    Console.WriteLine($"[GHTK] --- Get Tracker RENDER ERR {c},{lineheight} - NOT AVAILABLE--");
+                    //Console.WriteLine($"{DateTime.Now} [GHTK] --- Get Tracker RENDER ERR {c},{lineheight} - NOT AVAILABLE--");
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[GHTK] --- Get Tracker RENDER ERR {c},{lineheight} \n :{ex.Message}--");
+                Console.WriteLine($"{DateTime.Now} [GHTK] --- Get Tracker RENDER ERR {c},{lineheight} \n :{ex.Message}--");
                 return null;
             }
         }
