@@ -164,7 +164,6 @@ namespace l2dcmd
                 Console.WriteLine($"执行下载中 [On Download] - 总计 [Total]:{j.Data.Count}");
                 foreach (var x in j.Data)
                 {
-                    Console.WriteLine("输入clear清空显示 [Type `clear` to clear the console prompt]");
                     if (forcecheck && System.IO.Directory.Exists(System.IO.Path.Combine(args[^1], "live2d", "chara", x.Value.assetBundleName)))
                     {
                         Console.Clear();
