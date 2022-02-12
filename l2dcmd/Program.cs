@@ -164,7 +164,7 @@ namespace l2dcmd
                 Console.WriteLine($"执行下载中 [On Download] - 总计 [Total]:{j.Data.Count}");
                 foreach (var x in j.Data)
                 {
-                    if (forcecheck && System.IO.Directory.Exists(System.IO.Path.Combine(args[^1], "live2d", "chara", x.Value.assetBundleName)))
+                    if (!forcecheck && System.IO.Directory.Exists(System.IO.Path.Combine(args[^1], "live2d", "chara", x.Value.assetBundleName)))
                     {
                         Console.Clear();
                         Console.WriteLine($"{num++} / {j.Data.Count} [{x.Value.assetBundleName}]");
