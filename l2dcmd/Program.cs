@@ -167,7 +167,7 @@ namespace l2dcmd
                     if (!forcecheck && System.IO.Directory.Exists(System.IO.Path.Combine(args[^1], "live2d", "chara", x.Value.assetBundleName)))
                     {
                         Console.Clear();
-                        Console.WriteLine($"{num++} / {j.Data.Count} [{x.Value.assetBundleName}]");
+                        Console.WriteLine($":E: {num++} / {j.Data.Count} [{x.Value.assetBundleName}]");
                         continue;
                     }
                     else
@@ -186,9 +186,9 @@ namespace l2dcmd
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"[{num}] [{x.Value.assetBundleName}] : {ex.Message}");
+                            Console.WriteLine($":ERR: [{num}] [{x.Value.assetBundleName}] : {ex.Message}");
                         }
-                        Console.WriteLine($"{num} / {j.Data.Count} [{numx}] [{x.Value.assetBundleName}]");
+                        Console.WriteLine($":D: {num} / {j.Data.Count} [{numx}] [{x.Value.assetBundleName}]");
                         num++;
                     }
                 }
