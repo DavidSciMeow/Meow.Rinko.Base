@@ -7,6 +7,7 @@ namespace l2dcmd
 {
     class Program
     {
+        static bool exitable = false;
         static readonly string help = 
             "在使用前请检查您是否能连接BestDori.com \n" +
             "[check internet connection before using software]\n"+
@@ -194,6 +195,7 @@ namespace l2dcmd
                 }
                 Console.WriteLine();
                 Console.WriteLine("---已完成 [Complete] ---");
+                exitable = true;
             });
             Console.WriteLine("执行下载 [On Download]");
             Console.WriteLine("");
@@ -201,6 +203,10 @@ namespace l2dcmd
                 if(Console.ReadLine() == "clear")
                 {
                     Console.Clear();
+                }
+                if (exitable)
+                {
+                    return;
                 }
             }
         }
