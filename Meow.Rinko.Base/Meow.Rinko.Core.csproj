@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <AssemblyName>Electronicute.Rinko.Core</AssemblyName>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
@@ -29,6 +29,7 @@ usage at: https://davidscimeow.github.io/Meow.Rinko.Base/index.html</Description
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Electronicute.Meow" Version="4.0.0" />
     <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
