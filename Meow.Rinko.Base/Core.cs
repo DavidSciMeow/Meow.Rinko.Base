@@ -235,6 +235,9 @@ namespace Meow.Rinko.Core
         /// <param name="c">具体区服 (默认日本服)</param>
         /// <returns></returns>
         public static string GetDataAssets(string datastring, Country c = Country.jp) => String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
-        private static string String(string url) => Util.Network.Http.Get.String(url).GetAwaiter().GetResult();
+        private static string String(string url)
+        {
+            return Util.Network.Http.Client.Basic.GetStringAsync(url).GetAwaiter().GetResult();
+        }
     }
 }

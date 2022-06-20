@@ -36,8 +36,8 @@ namespace Meow.Rinko.Core.Gets
         /// <returns></returns>
         public (int[] inbound,int[] outbound) EventNow(Country c)
         {
-            var nts = new TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
-            var ntsmax = new TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var nts = DateTime.Now.ToMiSecTimeStamp();
+            var ntsmax = DateTime.Now.AddDays(1).ToMiSecTimeStamp();
             var inbound = from a in Data 
                           where a.Value?.startAt?[(int)c] != null && 
                             long.Parse(a.Value?.startAt?[(int)c]??"0") < nts && 
@@ -80,8 +80,8 @@ namespace Meow.Rinko.Core.Gets
         /// <returns></returns>
         public (Model.QGacha[] inbound, Model.QGacha[] outbound) GachaNow(Country c)
         {
-            var nts = new TimeX.DateTimeX(DateTime.Now).ToMiSecTimeStamp();
-            var ntsmax = new TimeX.DateTimeX(DateTime.Now.AddDays(1)).ToMiSecTimeStamp();
+            var nts = DateTime.Now.ToMiSecTimeStamp();
+            var ntsmax = DateTime.Now.AddDays(1).ToMiSecTimeStamp();
             var inbound = from a in Data
                           where a.Value?.publishedAt?[(int)c] != null &&
                             long.Parse(a.Value.publishedAt[(int)c] ?? "0") < nts &&
