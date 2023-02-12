@@ -2,7 +2,6 @@
 using Meow.Rinko.Core.Api;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Meow.Rinko.BasicAnalyze
 {
@@ -23,10 +22,6 @@ namespace Meow.Rinko.BasicAnalyze
         /// 区服
         /// </summary>
         public Country C;
-        /// <summary>
-        /// 默认的构造
-        /// </summary>
-        public MultiTracker() { }
         /// <summary>
         /// 多功能榜线高度转换
         /// </summary>

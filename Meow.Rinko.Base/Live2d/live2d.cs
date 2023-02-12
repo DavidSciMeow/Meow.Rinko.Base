@@ -238,18 +238,18 @@ namespace Meow.Rinko.Core.Live2d
                 /// <summary>
                 /// 路径包
                 /// </summary>
-                public string? bundleName;
+                public string bundleName;
                 /// <summary>
                 /// 文件名
                 /// </summary>
-                public string? fileName;
+                public string fileName;
                 /// <summary>
                 /// 下载到指定目录根
                 /// </summary>
                 /// <param name="pathBase"></param>
                 /// <param name="c"></param>
                 /// <returns></returns>
-                public Task<(string f, HttpFiles FileStatus)> DownloadFileInto(string pathBase,Country c = Country.jp)
+                public Task<(string f, int FileStatus)> DownloadFileInto(string pathBase,Country c = Country.jp)
                 {
                     var t = Task.Factory.StartNew(() =>
                     {
@@ -257,14 +257,14 @@ namespace Meow.Rinko.Core.Live2d
                         var p = Path.Combine(pathBase, bundleName, f);
                         try
                         {
-                            var (_, FileStatus, _) = Get.File($"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",p);
+                            var FileStatus = Bases.C.MFile($"https://bestdori.com/assets/{c}/{bundleName}_rip/{f}",p).GetAwaiter().GetResult();
                             return (f, FileStatus);
                         }
                         catch(Exception ex)
                         {
                             Console.WriteLine($"{f} :: {ex}");
                         }
-                        return (f, HttpFiles.PROGRESS_FAIL);
+                        return (f, 0);
 
                     });
                     return t;
@@ -276,25 +276,25 @@ namespace Meow.Rinko.Core.Live2d
                 public int type;
                 public int duration;
             }
-            public m_File? m_GameObject;
+            public m_File m_GameObject;
             public int m_Enabled;
-            public string? m_Name;
-            public CosFile? model;
-            public CosFile? physics;
-            public CosFile[]? textures;
-            public CosFile? transition;
-            public CosFile[]? motions;
-            public Param? praramGeneralA;
-            public Param? paramLoop;
+            public string m_Name;
+            public CosFile model;
+            public CosFile physics;
+            public CosFile[] textures;
+            public CosFile transition;
+            public CosFile[] motions;
+            public Param praramGeneralA;
+            public Param paramLoop;
             /// <summary>
             /// 下载整个模型
             /// </summary>
             /// <param name="p"></param>
             /// <param name="c"></param>
             /// <returns></returns>
-            public async Task<List<(string f, HttpFiles FileStatus)>> DownloadModel(string p, Country c = Country.jp) 
+            public async Task<List<(string f, int FileStatus)>> DownloadModel(string p, Country c = Country.jp) 
             {
-                List<(string f, HttpFiles FileStatus)> l = new();
+                List<(string f, int FileStatus)> l = new();
                 l.Add(await model.DownloadFileInto(p, c));
                 l.Add(await physics.DownloadFileInto(p, c));
                 l.Add(await transition.DownloadFileInto(p, c));
@@ -312,11 +312,11 @@ namespace Meow.Rinko.Core.Live2d
                     var jo = ConvertModelToLive2dObject();
                     var path = Path.Combine(p, model.bundleName, "l2o.json");//moc 和 json在一起
                     File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(jo));
-                    l.Add(("l2o.json", HttpFiles.Success_Download));
+                    l.Add(("l2o.json", 1));
                 }
                 else
                 {
-                    l.Add(("l2o.json", HttpFiles.Already_Exist));
+                    l.Add(("l2o.json", -1));
                 }
                 return l;
             }
@@ -333,8 +333,8 @@ namespace Meow.Rinko.Core.Live2d
                 }
                 return new Live2dObject()
                 {
-                    model = $"{this.model.fileName.Replace(".moc.bytes",".moc")}",
-                    physics = $"{this.physics.fileName}",
+                    model = $"{model.fileName.Replace(".moc.bytes",".moc")}",
+                    physics = $"{physics.fileName}",
                     textures = textures.ToArray(),
                 };
             }

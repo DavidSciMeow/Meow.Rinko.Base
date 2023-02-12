@@ -237,11 +237,26 @@ namespace Meow.Rinko.Core
         /// <param name="c">具体区服 (默认日本服)</param>
         /// <returns></returns>
         public static string GetDataAssets(string datastring, Country c = Country.jp) => String($"https://bestdori.com/assets/{c}/live2d/chara/{datastring}_rip/buildData.asset");
-        private static string String(string url)
+        
+        /// <summary>
+        /// BaseStringMethod
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string String(string url)
         {
-            ServicePointManager.Expect100Continue = false;
-            Util.Network.Http.Client.Basic.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36");
-            return Util.Network.Http.Client.Basic.GetStringAsync(url).GetAwaiter().GetResult();
+            C.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36");
+            C.DefaultRequestHeaders.Add("Connection", "Close");
+            return C.GetStringAsync(url).GetAwaiter().GetResult();
         }
+        /// <summary>
+        /// BaseClient
+        /// </summary>
+        public static HttpClient C = new(new SocketsHttpHandler
+        {
+            PooledConnectionLifetime = TimeSpan.FromMilliseconds(1000),
+            PooledConnectionIdleTimeout = TimeSpan.FromMilliseconds(1000),
+            MaxConnectionsPerServer = 5,
+        });
     }
 }

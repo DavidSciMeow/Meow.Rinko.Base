@@ -26,7 +26,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch(Exception ex)
             {
-                throw new($"E0010 EventList:: {ex}");
+                Console.WriteLine($"E0010 EventList:: {ex}");
             }
         }
         /// <summary>
@@ -70,7 +70,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0011 GachaList:: {ex}");
+                Console.WriteLine($"E0011 GachaList:: {ex}");
             }
         }
         /// <summary>
@@ -114,7 +114,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0012 Song:: {ex}");
+                Console.WriteLine($"E0012 Song:: {ex}");
             }
         }
     }
@@ -138,7 +138,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0013 Character:: {ex}");
+                Console.WriteLine($"E0013 Character:: {ex}");
             }
         }
     }
@@ -162,7 +162,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0014 Archive:: {ex}");
+                Console.WriteLine($"E0014 Archive:: {ex}");
             }
         }
     }
@@ -186,7 +186,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0015 News:: {ex}");
+                Console.WriteLine($"E0015 News:: {ex}");
             }
         }
     }
@@ -210,7 +210,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0016 SongPcts:: {ex}");
+                Console.WriteLine($"E0016 SongPcts:: {ex}");
             }
         }
     }
@@ -235,7 +235,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0017 Event:: {ex}");
+                Console.WriteLine($"E0017 Event:: {ex}");
             }
         }
     }
@@ -260,7 +260,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0018 Gacha:: {ex}");
+                Console.WriteLine($"E0018 Gacha:: {ex}");
             }
         }
     }
@@ -285,7 +285,7 @@ namespace Meow.Rinko.Core.Gets
             }
             catch (Exception ex)
             {
-                throw new($"E0019 Card:: {ex}");
+                Console.WriteLine($"E0019 Card:: {ex}");
             }
         }
     }
