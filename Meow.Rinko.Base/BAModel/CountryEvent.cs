@@ -1,11 +1,4 @@
-﻿using Meow.Rinko.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Meow.Rinko.BasicAnalyze.Model
+﻿namespace Meow.Rinko.BasicAnalyze.Model
 {
     /// <summary>
     /// 确定区域的活动查询

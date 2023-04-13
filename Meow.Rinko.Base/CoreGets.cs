@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Meow.Util;
+using Meow.Util.Convert;
 
 namespace Meow.Rinko.Core.Gets
 {

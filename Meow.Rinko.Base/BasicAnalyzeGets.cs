@@ -1,10 +1,4 @@
-﻿using Meow.Rinko.BasicAnalyze.Model;
-using Meow.Rinko.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Meow.Rinko.Core;
 
 namespace Meow.Rinko.BasicAnalyze
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 
 namespace Meow.Rinko.Core
 {
@@ -245,18 +243,13 @@ namespace Meow.Rinko.Core
         /// <returns></returns>
         public static string String(string url)
         {
-            C.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36");
-            C.DefaultRequestHeaders.Add("Connection", "Close");
+            //C.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36");
+            //C.DefaultRequestHeaders.Add("Connection", "Close");
             return C.GetStringAsync(url).GetAwaiter().GetResult();
         }
         /// <summary>
         /// BaseClient
         /// </summary>
-        public static HttpClient C = new(new SocketsHttpHandler
-        {
-            PooledConnectionLifetime = TimeSpan.FromMilliseconds(1000),
-            PooledConnectionIdleTimeout = TimeSpan.FromMilliseconds(1000),
-            MaxConnectionsPerServer = 5,
-        });
+        public static HttpClient C = new();
     }
 }
