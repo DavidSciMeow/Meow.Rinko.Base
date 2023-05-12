@@ -1,4 +1,7 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Meow.Rinko.Core
 {
@@ -243,13 +246,14 @@ namespace Meow.Rinko.Core
         /// <returns></returns>
         public static string String(string url)
         {
-            //C.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36");
-            //C.DefaultRequestHeaders.Add("Connection", "Close");
             return C.GetStringAsync(url).GetAwaiter().GetResult();
         }
         /// <summary>
         /// BaseClient
         /// </summary>
-        public static HttpClient C = new();
+        public static HttpClient C = new(new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true,
+        });
     }
 }
